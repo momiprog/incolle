@@ -1,9 +1,27 @@
 export default function Header() {
     return (
         <header>
-            <h1 className="bg-blue-600 text-3xl text-white py-2 px-3 shadow-md">
-                チャットルーム
-            </h1>
+            {/* 1. h1 と ul を横並びにし、両端に配置する */}
+            <div className="flex items-center justify-between bg-blue-600 px-4 py-3 shadow-md">
+
+                {/* 背景色などは親のdivに移動させたので、h1は文字のスタイルのみにしました */}
+                <h1 className="text-2xl font-bold text-white">
+                    チャットルーム
+                </h1>
+
+                {/* 2. メニュー項目(li)同士を横並びにし、隙間(gap)を空ける */}
+                <ul className="flex gap-6 text-white font-medium">
+                    <li className="hover:text-blue-200 cursor-pointer">
+                        サークルを探す
+                    </li>
+                    <li className="hover:text-blue-200 cursor-pointer">
+                        イベント一覧
+                    </li>
+                    <li className="hover:text-blue-200 cursor-pointer">
+                        サークルを掲載する
+                    </li>
+                </ul>
+            </div>
         </header>
     );
 }
