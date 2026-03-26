@@ -7,8 +7,8 @@ export default function Header() {
             <div className="flex items-center justify-between bg-blue-600 px-4 py-3 shadow-md">
 
                 {/* 背景色などは親のdivに移動させたので、h1は文字のスタイルのみにしました */}
-                <h1 className="text-2xl font-bold text-white">
-                    チャットルーム
+                <h1>
+                    <Link href="/" className="text-2xl font-bold text-white">インカレサーチ</Link>
                 </h1>
 
                 {/* 2. メニュー項目(li)同士を横並びにし、隙間(gap)を空ける */}
