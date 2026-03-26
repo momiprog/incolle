@@ -1,4 +1,5 @@
 import Header from "../components/layout/Header";
+import Link from "next/link";
 
 export default function About() {
     return (
@@ -86,6 +87,12 @@ export default function About() {
                     <p className="mt-6 text-gray-600">
                         インカレサーチで、あなたの大学生活をさらに充実させる最高のサークルを見つけてください。
                     </p>
+                    <Link
+                        href="/circles"
+                        className="mt-10 inline-block px-10 py-4 text-lg font-bold bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    >
+                        サークル一覧を見る
+                    </Link>
                 </div>
             </section>
         </div>
