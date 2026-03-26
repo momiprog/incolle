@@ -11,22 +11,7 @@ export default function Header() {
                     <Link href="/" className="text-2xl font-bold text-white">インカレサーチ</Link>
                 </h1>
 
-                {/* 2. メニュー項目(li)同士を横並びにし、隙間(gap)を空ける */}
-                <ul className="flex gap-6 text-white font-medium">
-                    <li>
-                        <Link href="/search" className="hover:text-blue-200 cursor-pointer">
-                            サークルを探す
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/event" className="hover:text-blue-200 cursor-pointer">
-                            イベント一覧
-                        </Link>
-                    </li>
-                    <li>
-                        サークルを掲載する
-                    </li>
-                </ul>
+
             </div>
         </header>
     );
