@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // 1. サークルデータの「設計図（型）」を定義する
 type Circle = {
   id: number;        // IDは数字
@@ -9,9 +11,9 @@ type Circle = {
 
 // 2. 仮のデータ（上で作った型に沿って書きます）
 const circlesData: Circle[] = [
-  { id: 1, name: "FC東京インカレ", tag: "フットサル", university: "複数大学", image: "/images/fc.jpg" },
-  { id: 2, name: "Webエンジニアリング部", tag: "プログラミング", university: "複数大学", image: "/images/web.jpg" },
-  { id: 3, name: "週末登山サークル", tag: "アウトドア", university: "複数大学", image: "/images/tozan.jpg" },
+  { id: 1, name: "FC東京インカレ", tag: "フットサル", university: "複数大学", image: "/images/test1.png" },
+  { id: 2, name: "Webエンジニアリング部", tag: "プログラミング", university: "複数大学", image: "/images/test2.png" },
+  { id: 3, name: "週末登山サークル", tag: "アウトドア", university: "複数大学", image: "/images/test3.png" },
 ];
 
 // 3. コンポーネントが受け取る「props」の型も指定する
@@ -19,6 +21,14 @@ const circlesData: Circle[] = [
 function CircleCard({ circle }: { circle: Circle }) {
   return (
     <div className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+        <Image
+          src={circle.image} // 文字列（URL）をそのまま渡します
+          alt={circle.name}  // alt属性も必須です
+          width={600}            // 画像の基準となる幅
+          height={400}           // 画像の基準となる高さ
+          // object-cover で画像を歪ませずにトリミングします
+          className="w-full h-48 object-cover rounded-md mb-4" 
+        />
       <h3 className="font-bold text-lg">{circle.name}</h3>
       <span className="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full w-fit mt-2 inline-block">
         #{circle.tag}
