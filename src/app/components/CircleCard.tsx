@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 // 1. サークルデータの「設計図（型）」を定義する
 type Circle = {
@@ -20,20 +21,22 @@ const circlesData: Circle[] = [
 // { circle }: { circle: Circle } と書くことで、「このcircleはさっき作った設計図通りだよ」と伝えます
 function CircleCard({ circle }: { circle: Circle }) {
   return (
-    <div className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-        <Image
-          src={circle.image} // 文字列（URL）をそのまま渡します
-          alt={circle.name}  // alt属性も必須です
-          width={600}            // 画像の基準となる幅
-          height={400}           // 画像の基準となる高さ
-          // object-cover で画像を歪ませずにトリミングします
-          className="w-full h-48 object-cover rounded-md mb-4" 
-        />
-      <h3 className="font-bold text-lg">{circle.name}</h3>
-      <span className="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full w-fit mt-2 inline-block">
-        #{circle.tag}
-      </span>
-    </div>
+    <Link href={`/search/${circle.id}`}>
+        <div className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+            <Image
+            src={circle.image} // 文字列（URL）をそのまま渡します
+            alt={circle.name}  // alt属性も必須です
+            width={600}            // 画像の基準となる幅
+            height={400}           // 画像の基準となる高さ
+            // object-cover で画像を歪ませずにトリミングします
+            className="w-full h-48 object-cover rounded-md mb-4" 
+            />
+        <h3 className="font-bold text-lg">{circle.name}</h3>
+        <span className="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full w-fit mt-2 inline-block">
+            #{circle.tag}
+        </span>
+        </div>
+    </Link>
   );
 }
 
