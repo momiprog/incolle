@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // 1. サークルデータの「設計図（型）」を定義する
-type Circle = {
+export type Circle = {
   id: number;        // IDは数字
   name: string;      // 名前は文字列
   tag: string;       // タグは文字列
@@ -11,7 +11,7 @@ type Circle = {
 };
 
 // 2. 仮のデータ（上で作った型に沿って書きます）
-const circlesData: Circle[] = [
+export const circlesData: Circle[] = [
   { id: 1, name: "FC東京インカレ", tag: "フットサル", university: "複数大学", image: "/images/test1.png" },
   { id: 2, name: "Webエンジニアリング部", tag: "プログラミング", university: "複数大学", image: "/images/test2.png" },
   { id: 3, name: "週末登山サークル", tag: "アウトドア", university: "複数大学", image: "/images/test3.png" },
@@ -21,7 +21,7 @@ const circlesData: Circle[] = [
 // { circle }: { circle: Circle } と書くことで、「このcircleはさっき作った設計図通りだよ」と伝えます
 function CircleCard({ circle }: { circle: Circle }) {
   return (
-    <Link href={`/search/${circle.id}`}>
+    <Link href={`/circles/${circle.id}`}>
         <div className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
             <Image
             src={circle.image} // 文字列（URL）をそのまま渡します
