@@ -38,7 +38,7 @@ function CircleCard({ circle }: { circle: Circle }) {
           <h3 className="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition-colors">
             {circle.name}
           </h3>
-          <p className="text-sm text-gray-500 mt-1">📍 {circle.university}</p>
+
         </div>
       </div>
     </Link>

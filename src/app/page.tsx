@@ -38,7 +38,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-            🎓 サークル一覧
+            サークル一覧
           </h2>
           <Link
             href="/circles"

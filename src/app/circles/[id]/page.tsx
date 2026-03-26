@@ -45,29 +45,12 @@ export default async function CircleDetailPage({ params }: Props) {
             <span className="bg-blue-100 text-blue-700 font-bold px-4 py-1.5 rounded-full text-sm">
               #{circle.tag}
             </span>
-            <span className="bg-gray-100 text-gray-700 font-medium px-4 py-1.5 rounded-full text-sm flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.22 4.624 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4.016z" />
-              </svg>
-              {circle.university}
-            </span>
           </div>
 
           {/* サークルタイトル */}
           <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-8 tracking-tight">
             {circle.name}
           </h1>
-
-          {/* 紹介文（現状はダミーに近い内容） */}
-          <div className="prose prose-blue max-w-none text-gray-700 mb-10 leading-relaxed md:text-lg">
-            <p className="mb-4">
-              ここは <strong>{circle.name}</strong> の詳細ページです。インカレサークルとして、{circle.university}の学生が中心となって活動しています。
-              現在は「{circle.tag}」に興味のある新規メンバーを大募集中です！
-            </p>
-            <p>
-              初心者から経験者まで幅広く歓迎。年間を通して楽しいイベントをたくさん企画していますので、少しでも気になった方はぜひ気軽にお問い合わせください。
-            </p>
-          </div>
 
           {/* アクションボタン（クリックを促す） */}
           <div className="flex flex-col sm:flex-row gap-4 border-t border-gray-100 pt-8 mt-4">
