@@ -2,16 +2,16 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header>
-            {/* 1. h1 と ul を横並びにし、両端に配置する */}
-            <div className="flex items-center justify-between bg-blue-600 px-4 py-3 shadow-md">
-
-                {/* 背景色などは親のdivに移動させたので、h1は文字のスタイルのみにしました */}
+        <header className="sticky top-0 z-50 backdrop-blur-md bg-blue-600/95 shadow-lg">
+            <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
                 <h1>
-                    <Link href="/" className="text-2xl font-bold text-white">インカレサーチ</Link>
+                    <Link
+                        href="/"
+                        className="text-2xl font-extrabold text-white tracking-tight hover:opacity-90 transition-opacity"
+                    >
+                        インカレサーチ
+                    </Link>
                 </h1>
-
-
             </div>
         </header>
     );
