@@ -14,6 +14,8 @@ export type Circle = {
   activityDays: string;  // 活動日
   memberCount: number;   // 部員数
   location?: string;     // 活動場所
+  fee: string;           // 活動費
+  genderRatio: string;   // 男女比
   snsLinks?: {           // 各種SNSのリンク
     x?: string;
     instagram?: string;
@@ -28,10 +30,12 @@ export const circlesData: Circle[] = [
     description: "東京を中心に活動するインカレのフットサルサークルです。初心者から経験者まで幅広く在籍しており、週末の練習を通じて他大学の学生と交流を深めています！",
     tags: ["フットサル", "スポーツ", "初心者歓迎"],
     universities: ["東京大学", "早稲田大学", "慶應義塾大学"],
-    images: ["/images/test1.png"],
+    images: ["/images/ダミー1.jpg"],
     activityDays: "毎週土曜日 13:00~17:00",
     memberCount: 45,
     location: "東京都内のフットサルコート",
+    fee: "月額2,000円",
+    genderRatio: "6:4",
     snsLinks: { x: "https://x.com" }
   },
   {
@@ -40,9 +44,11 @@ export const circlesData: Circle[] = [
     description: "プログラミング未経験からでもWebアプリを作れるようになることを目標にした開発サークルです。週1回のオンライン勉強会と、月1回の対面ハッカソンを実施しています。",
     tags: ["プログラミング", "IT", "初心者歓迎"],
     universities: ["複数大学オンライン連盟"],
-    images: ["/images/test2.png"],
+    images: ["/images/ダミー2.jpg"],
     activityDays: "毎週水曜日（オンライン）/ 月1回土日（対面）",
     memberCount: 120,
+    fee: "無料（ハッカソン時のみ実費参加）",
+    genderRatio: "7:3",
     snsLinks: { x: "https://x.com", instagram: "https://instagram.com" }
   },
   {
@@ -51,10 +57,12 @@ export const circlesData: Circle[] = [
     description: "関東近郊の山を中心に、月に1〜2回のペースで登山を楽しんでいます。自然を感じながら体を動かしたい方、新しい出会いを探している方にぴったりです。",
     tags: ["アウトドア", "登山", "自然"],
     universities: ["複数大学"],
-    images: ["/images/test3.png"],
+    images: ["/images/ダミー3.jpg"],
     activityDays: "隔週日曜日",
     memberCount: 30,
-    location: "関東近郊の山々"
+    location: "関東近郊の山々",
+    fee: "1回につき約5,000円（交通費等含む）",
+    genderRatio: "4:6"
   },
 ];
 

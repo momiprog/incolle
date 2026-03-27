@@ -86,6 +86,20 @@ export default async function CircleDetailPage({ params }: Props) {
                 <dd className="text-gray-800 font-medium">{circle.universities.join("・")}</dd>
               </div>
             </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xl">💰</span>
+              <div>
+                <dt className="text-xs text-gray-500 font-bold">活動費</dt>
+                <dd className="text-gray-800 font-medium">{circle.fee}</dd>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xl">👫</span>
+              <div>
+                <dt className="text-xs text-gray-500 font-bold">男女比</dt>
+                <dd className="text-gray-800 font-medium">{circle.genderRatio}</dd>
+              </div>
+            </div>
           </div>
 
           {/* 紹介文 */}
