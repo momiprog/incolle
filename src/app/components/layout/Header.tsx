@@ -12,6 +12,18 @@ export default function Header() {
                         インカレサーチ
                     </Link>
                 </h1>
+                <nav>
+                    <ul className="flex items-center gap-4">
+                        <li>
+                            <Link
+                                href="/welcome-event"
+                                className="text-sm font-bold bg-pink-500 text-white px-4 py-2 rounded-full shadow-sm hover:bg-pink-400 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-1"
+                            >
+                                新歓イベント一覧
+                            </Link>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </header>
     );
