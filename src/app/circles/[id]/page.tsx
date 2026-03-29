@@ -1,6 +1,7 @@
 import Header from "../../components/layout/Header";
 import { circlesData } from "../../components/CircleCard";
 import { notFound } from "next/navigation";
+import ImageSlider from "../../components/ImageSlider";
 import Image from "next/image";
 
 type Props = {
@@ -53,6 +54,15 @@ export default async function CircleDetailPage({ params }: Props) {
           <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
             {circle.name}
           </h1>
+
+          {/* 写真スライダー */}
+          <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-sm">
+            <ImageSlider 
+              images={circle.images} 
+              alt={`${circle.name}の活動風景`} 
+              className="w-full h-full"
+            />
+          </div>
 
           {/* サークル基本情報（新しく追加した項目） */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50 p-6 rounded-2xl mb-8 border border-gray-100">
