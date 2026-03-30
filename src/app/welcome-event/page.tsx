@@ -13,38 +13,48 @@ type WelcomeEvent = {
     description: string;
 };
 
-// 仮の新歓イベントデータ
+// 新歓イベントデータ
 const events: WelcomeEvent[] = [
     {
         id: 1,
         circleId: 1,
-        circleName: "FC東京インカレ",
-        eventName: "初心者大歓迎！体験フットサル＆見学・説明会",
-        date: "4月13日(土) 13:00〜16:00",
-        location: "代々木フットサルコート",
+        circleName: "学生団体廃校文化祭実行委員会CSF",
+        eventName: "新入生歓迎イベント",
+        date: "4月12日(日) 13:00〜16:00",
+        location: "東京都豊島区池袋 みらい館大明",
         type: "offline",
-        description: "実際にボールを蹴りながら、サークルの雰囲気を感じていただけます！運動着と運動靴を持参してください。見学だけでもOKです⚽️",
+        description: "全学年対象🙆🏻\n\n参加費: 500円\n持ち物: スリッパ",
     },
     {
         id: 2,
-        circleId: 2,
-        circleName: "Webエンジニアリング部",
-        eventName: "【全国から参加OK】オンライン新入生歓迎・活動説明会",
-        date: "4月10日(水) 20:00〜21:00",
-        location: "オンライン (Zoom)",
-        type: "online",
-        description: "文系・プログラミング未経験でも全く問題ありません！どんなWebアプリを作っているか、先輩たちが丁寧に解説します。気軽にご参加ください！💻",
+        circleId: 1,
+        circleName: "学生団体廃校文化祭実行委員会CSF",
+        eventName: "たこ焼きパーティー (大型新歓)",
+        date: "4月19日(日) 12:00〜16:00",
+        location: "東京都豊島区池袋 みらい館大明",
+        type: "offline",
+        description: "全学年対象🙆🏻\n\n参加費: 未定(1500円〜を予定しております)\n持ち物: スリッパ",
     },
     {
         id: 3,
-        circleId: 3,
-        circleName: "週末登山サークル",
-        eventName: "春の高尾山 新入生歓迎ハイキング＆交流会",
-        date: "4月21日(日) 09:00〜15:00",
-        location: "京王線 高尾山口駅 改札前 集合",
+        circleId: 1,
+        circleName: "学生団体廃校文化祭実行委員会CSF",
+        eventName: "新入生歓迎イベント",
+        date: "5月10日(日) 13:00〜16:00",
+        location: "東京都豊島区池袋 みらい館大明",
         type: "offline",
-        description: "初心者でも登りやすい高尾山で、自然を楽しみながら新しい友達を作りましょう！登頂後には自己紹介ゲームや交流レクも予定しています⛰️",
+        description: "全学年対象🙆🏻\n\n参加費: 500円\n持ち物: スリッパ",
     },
+    {
+        id: 4,
+        circleId: 1,
+        circleName: "学生団体廃校文化祭実行委員会CSF",
+        eventName: "新入生歓迎イベント",
+        date: "5月24日(日) 13:00〜16:00",
+        location: "東京都豊島区池袋 みらい館大明",
+        type: "offline",
+        description: "全学年対象🙆🏻\n\n参加費: 500円\n持ち物: スリッパ",
+    }
 ];
 
 export default function WelcomeEventPage() {
@@ -85,7 +95,12 @@ export default function WelcomeEventPage() {
                 </div>
 
                 <div className="space-y-6">
-                    {events.map((event) => {
+                    {events.length === 0 ? (
+                        <div className="bg-white rounded-2xl shadow-sm p-10 text-center border border-gray-100">
+                            <p className="text-gray-500 font-bold text-lg">現在予定されている新歓イベントはありません🌸</p>
+                            <p className="text-gray-400 text-sm mt-2">新しいイベントが追加されるのをお待ちください！</p>
+                        </div>
+                    ) : events.map((event) => {
                         // "4月13日(土) 13:00〜16:00" を日付と時間に分割
                         const [datePart, timePart] = event.date.split(' ');
 
@@ -110,7 +125,7 @@ export default function WelcomeEventPage() {
                                 <div className="p-6 md:p-8 flex-1 flex flex-col">
                                     {/* サークル名ラベル */}
                                     <div className="mb-3 flex items-center">
-                                        <span className="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full border border-gray-200">
+                                        <span className="text-sm md:text-base font-extrabold text-white bg-gradient-to-r from-pink-500 to-orange-400 px-4 py-1.5 rounded-full shadow-md drop-shadow-sm border border-pink-300">
                                             🏢 {event.circleName}
                                         </span>
                                     </div>
@@ -121,15 +136,27 @@ export default function WelcomeEventPage() {
                                     </h3>
 
                                     {/* 説明文 */}
-                                    <p className="text-gray-600 text-sm mb-6 leading-relaxed flex-1">
+                                    <p className="text-gray-600 text-sm mb-6 leading-relaxed flex-1 whitespace-pre-wrap">
                                         {event.description}
                                     </p>
 
                                     {/* フッター（場所＆ボタン） */}
                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-auto pt-5 border-t border-gray-100">
-                                        <div className="text-sm font-bold text-gray-500 flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-md">
-                                            📍 {event.location}
-                                        </div>
+                                        {event.type === 'offline' ? (
+                                            <a
+                                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-sm font-bold text-gray-600 hover:text-blue-600 flex items-center gap-1.5 bg-gray-50 hover:bg-blue-50 px-3 py-1.5 rounded-md transition-colors"
+                                                title="Googleマップで開く"
+                                            >
+                                                📍 <span className="underline decoration-gray-300 underline-offset-4">{event.location}</span>
+                                            </a>
+                                        ) : (
+                                            <div className="text-sm font-bold text-gray-500 flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-md">
+                                                💻 {event.location}
+                                            </div>
+                                        )}
                                         <Link href={`/circles/${event.circleId}`} className="w-full sm:w-auto text-center bg-gray-900 text-white px-6 py-2.5 rounded-full font-bold hover:bg-pink-500 hover:shadow-md transition-all duration-300 text-sm whitespace-nowrap">
                                             サークル詳細を見る →
                                         </Link>
