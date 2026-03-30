@@ -26,43 +26,32 @@ export type Circle = {
 export const circlesData: Circle[] = [
   {
     id: 1,
-    name: "FC東京インカレ",
-    description: "東京を中心に活動するインカレのフットサルサークルです。初心者から経験者まで幅広く在籍しており、週末の練習を通じて他大学の学生と交流を深めています！",
-    tags: ["フットサル", "スポーツ", "初心者歓迎"],
-    universities: ["東京大学", "早稲田大学", "慶應義塾大学"],
-    images: ["/images/ダミー1.jpg", "/images/ダミー2.jpg", "/images/ダミー3.jpg"],
-    activityDays: "毎週土曜日 13:00~17:00",
-    memberCount: 45,
-    location: "東京都内のフットサルコート",
-    fee: "月額2,000円",
-    genderRatio: "6:4",
-    snsLinks: { x: "https://x.com" }
-  },
-  {
-    id: 2,
-    name: "Webエンジニアリング部",
-    description: "プログラミング未経験からでもWebアプリを作れるようになることを目標にした開発サークルです。週1回のオンライン勉強会と、月1回の対面ハッカソンを実施しています。",
-    tags: ["プログラミング", "IT", "初心者歓迎"],
-    universities: ["複数大学オンライン連盟"],
-    images: ["/images/ダミー2.jpg", "/images/ダミー3.jpg", "/images/ダミー1.jpg"],
-    activityDays: "毎週水曜日（オンライン）/ 月1回土日（対面）",
-    memberCount: 120,
-    fee: "無料（ハッカソン時のみ実費参加）",
-    genderRatio: "7:3",
-    snsLinks: { x: "https://x.com", instagram: "https://instagram.com" }
-  },
-  {
-    id: 3,
-    name: "週末登山サークル",
-    description: "関東近郊の山を中心に、月に1〜2回のペースで登山を楽しんでいます。自然を感じながら体を動かしたい方、新しい出会いを探している方にぴったりです。",
-    tags: ["アウトドア", "登山", "自然"],
-    universities: ["複数大学"],
-    images: ["/images/ダミー3.jpg", "/images/ダミー1.jpg", "/images/ダミー2.jpg"],
-    activityDays: "隔週日曜日",
-    memberCount: 30,
-    location: "関東近郊の山々",
-    fee: "1回につき約5,000円（交通費等含む）",
-    genderRatio: "4:6"
+    name: "学生団体廃校文化祭実行委員会CSF",
+    description: `「廃校をもっと身近に」という理念のもと、池袋にある廃校を活動拠点としてイベントを開催している団体です🏫🌱
+イベントを開催し、廃校に足を運んでもらうことで、廃校活用の楽しさや可能性を肌で感じてもらうことを、地域創生活動の一環として行っています。
+普段のミーツでは、地域創生局・運営局・広報局・渉外局といった4つの局編成のもと、自分のやりたい分野に近い局を選び、イベントに向けた準備を行っています。
+所属しているメンバーは個性豊かで優しく、友達思いな人が多いです🤝🏻
+毎週行っているミーツ以外でも、プライベートで集まって遊ぶことが多いです👀
+メンバーはイベントが大好きで、夏には花火大会に行くなど、活動以外でも充実すること間違いなしです！
+大学というコミュニティを超えたこの団体で、たくさんの思い出と経験を得ましょう！！`,
+    tags: ["イベント"],
+    universities: ["日本大学", "その他大学"],
+    images: [
+      "/images/csf/csf-1.webp",
+      "/images/csf/csf-2.webp",
+      "/images/csf/csf-3.webp",
+      "/images/csf/csf-4.webp",
+      "/images/csf/csf-5.webp"
+    ],
+    activityDays: "毎週金曜日 19〜21時",
+    memberCount: 25,
+    location: "東京都豊島区池袋三丁目30-8 みらい館大明",
+    fee: "",
+    genderRatio: "男6:女4",
+    snsLinks: {           // 各種SNSのリンク
+      x: "https://x.com/closedschool",
+      instagram: "https://www.instagram.com/closed_school_festival",
+    },
   },
 ];
 

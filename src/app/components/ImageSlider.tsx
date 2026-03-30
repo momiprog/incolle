@@ -55,7 +55,7 @@ export default function ImageSlider({ images, alt, className = "" }: Props) {
       {/* ⬅️ 戻るボタン */}
       <button
         onClick={handlePrev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-1.5 rounded-full shadow-md opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 z-10"
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-1.5 rounded-full shadow-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-opacity duration-300 z-10"
         aria-label="前の画像"
       >
         <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
@@ -64,7 +64,7 @@ export default function ImageSlider({ images, alt, className = "" }: Props) {
       {/* ➡️ 次へボタン */}
       <button
         onClick={handleNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-1.5 rounded-full shadow-md opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 z-10"
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-gray-800 p-1.5 rounded-full shadow-md opacity-100 md:opacity-0 md:group-hover/slider:opacity-100 transition-opacity duration-300 z-10"
         aria-label="次の画像"
       >
         <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
