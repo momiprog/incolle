@@ -125,9 +125,11 @@ export default function WelcomeEventPage() {
                                 <div className="p-6 md:p-8 flex-1 flex flex-col">
                                     {/* サークル名ラベル */}
                                     <div className="mb-3 flex items-center">
-                                        <span className="text-sm md:text-base font-extrabold text-white bg-gradient-to-r from-pink-500 to-orange-400 px-4 py-1.5 rounded-full shadow-md drop-shadow-sm border border-pink-300">
-                                            🏢 {event.circleName}
-                                        </span>
+                                        <Link href={`/circles/${event.circleId}`} className="inline-block transition-transform hover:-translate-y-0.5 hover:scale-105">
+                                            <span className="text-sm md:text-base font-extrabold text-white bg-gradient-to-r from-pink-500 to-orange-400 px-4 py-1.5 rounded-full shadow-md drop-shadow-sm border border-pink-300 flex items-center gap-1.5">
+                                                {event.circleName} <span className="text-sm font-black pl-2">詳細を見る➡️</span>
+                                            </span>
+                                        </Link>
                                     </div>
 
                                     {/* イベント名 */}
@@ -157,9 +159,7 @@ export default function WelcomeEventPage() {
                                                 💻 {event.location}
                                             </div>
                                         )}
-                                        <Link href={`/circles/${event.circleId}`} className="w-full sm:w-auto text-center bg-gray-900 text-white px-6 py-2.5 rounded-full font-bold hover:bg-pink-500 hover:shadow-md transition-all duration-300 text-sm whitespace-nowrap">
-                                            サークル詳細を見る →
-                                        </Link>
+
                                     </div>
                                 </div>
 
