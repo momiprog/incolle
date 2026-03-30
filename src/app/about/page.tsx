@@ -44,7 +44,6 @@ export default function About() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* 特徴 1 */}
                     <div className="bg-white rounded-2xl shadow-sm p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div className="text-4xl mb-4">🔍</div>
                         <h3 className="text-lg font-bold text-gray-800 mb-3">
                             あなたの「やりたい」が見つかる
                         </h3>
@@ -55,7 +54,6 @@ export default function About() {
 
                     {/* 特徴 2 */}
                     <div className="bg-white rounded-2xl shadow-sm p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div className="text-4xl mb-4">🤝</div>
                         <h3 className="text-lg font-bold text-gray-800 mb-3">
                             キャンパスの外に広がる新しい出会い
                         </h3>
@@ -66,7 +64,6 @@ export default function About() {
 
                     {/* 特徴 3 */}
                     <div className="bg-white rounded-2xl shadow-sm p-8 hover:shadow-lg transition-shadow duration-300">
-                        <div className="text-4xl mb-4">📍</div>
                         <h3 className="text-lg font-bold text-gray-800 mb-3">
                             「通いやすさ」も、もう妥協しない
                         </h3>
