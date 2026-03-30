@@ -1,5 +1,6 @@
 import Header from "../components/layout/Header";
 import Link from "next/link";
+import SakuraBackground from "../components/SakuraBackground";
 
 // イベントの型定義
 type WelcomeEvent = {
@@ -67,7 +68,8 @@ const events: WelcomeEvent[] = [
 
 export default function WelcomeEventPage() {
     return (
-        <div className="min-h-screen bg-gray-50 pb-20">
+        <div className="min-h-screen bg-pink-50/30 pb-20 relative">
+            <SakuraBackground />
             <Header />
 
             {/* ヒーローセクション（春・新歓らしい桜色のグラデーション） */}
@@ -94,7 +96,7 @@ export default function WelcomeEventPage() {
             </section>
 
             {/* メインコンテンツ */}
-            <main className="max-w-4xl mx-auto px-6 py-16">
+            <main className="max-w-4xl mx-auto px-6 py-16 relative z-10">
                 <div className="flex items-center gap-3 mb-10 border-b-2 border-pink-400 pb-3">
                     <span className="text-3xl">📅</span>
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-800 tracking-tight">
