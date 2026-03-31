@@ -3,7 +3,7 @@ import { circlesData } from "../../components/CircleCard";
 import { notFound } from "next/navigation";
 import ImageSlider from "../../components/ImageSlider";
 import Image from "next/image";
-
+import { events as allWelcomeEvents } from "../../data/welcomeEvents";
 type Props = {
   params: Promise<{
     id: string;
@@ -15,6 +15,9 @@ export default async function CircleDetailPage({ params }: Props) {
   
   // URLのIDを数値に変換し、circlesDataの中から一致するサークルを探します
   const circle = circlesData.find((c) => c.id === parseInt(id, 10));
+
+  // このサークルの新歓イベントを取得
+  const welcomeEvents = allWelcomeEvents.filter((e) => e.circleId === parseInt(id, 10));
 
   // もし該当するサークルが存在しなかったら「404 Not Foundページ」を表示
   if (!circle) {
@@ -116,6 +119,39 @@ export default async function CircleDetailPage({ params }: Props) {
           <div className="prose prose-blue max-w-none text-gray-700 mb-10 leading-relaxed md:text-lg whitespace-pre-wrap">
             {circle.description}
           </div>
+
+          {/* 新歓イベント日程（該当サークルのみ） */}
+          {welcomeEvents.length > 0 && (
+            <div className="mb-10 bg-pink-50/50 rounded-2xl p-6 border border-pink-100">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <span className="text-pink-400">🌸</span> 新歓イベント日程
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {welcomeEvents.map((event) => (
+                  <div key={event.id} className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="mb-3">
+                      <h3 className="font-bold text-lg text-gray-800">{event.eventName}</h3>
+                    </div>
+                    <div className="text-sm text-gray-600 space-y-2">
+                      <p className="flex items-start gap-2">
+                        <span className="text-gray-400 shrink-0 mt-0.5">📅</span> 
+                        <span>{event.date}</span>
+                      </p>
+                      <p className="flex items-start gap-2">
+                        <span className="text-gray-400 shrink-0 mt-0.5">📍</span> 
+                        <span>{event.location}</span>
+                      </p>
+                    </div>
+                    {event.description && (
+                      <p className="text-sm text-gray-700 whitespace-pre-wrap mt-4 pt-3 border-t border-gray-100">
+                        {event.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* アクションボタン（クリックを促す） */}
           <div className="flex flex-col sm:flex-row gap-4 border-t border-gray-100 pt-8 mt-4">
