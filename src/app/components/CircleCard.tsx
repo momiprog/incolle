@@ -53,6 +53,31 @@ export const circlesData: Circle[] = [
       instagram: "https://www.instagram.com/closed_school_festival",
     },
   },
+  {
+    id: 2,
+    name: "インカレ鬼ごっこサークル【Goblin's】",
+    description: `週1回都内の公園で鬼ごっこなどをやったり月1回様々なイベントを開催していたり春、夏、秋、冬、に合宿(旅行)に行きます！
+
+サークルの活動以外にもみんなで定期的に一緒にゲームをしたり、キックボクシングをしたり、カラオケに行ったりもしています！`,
+    tags: ["スポーツ", "イベント", "アウトドア"],
+    universities: ["青山学院大学", "専修大学", "早稲田大学", "東京農業大学", "日本大学", "神奈川大学"],
+    images: [
+      "/images/goblin's/goblin-1.webp",
+      "/images/goblin's/goblin-2.webp",
+      "/images/goblin's/goblin-3.webp",
+      "/images/goblin's/goblin-4.webp",
+      "/images/goblin's/goblin-5.webp",
+    ], // 画像を設定しました
+    activityDays: "週1〜2日",
+    memberCount: 100,
+    location: "代々木公園、駒沢オリンピック公園、西六郷公園",
+    fee: "年会費なし、鬼ごっこ無料、イベントはその都度",
+    genderRatio: "男6:女4",
+    snsLinks: {
+      x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg",
+      instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr",
+    },
+  },
 ];
 
 function CircleCard({ circle }: { circle: Circle }) {
