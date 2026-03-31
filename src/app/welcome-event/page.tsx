@@ -28,7 +28,7 @@ const events: WelcomeEvent[] = [
         date: "4月2日(木) 18:00〜20:00",
         location: "代々木公園",
         type: "offline",
-        description: "参加費: 無料 (イベント等は別途)\n持ち物: 運動しやすい服装と靴でお越しください！",
+        description: "参加費: 無料\n持ち物: 運動しやすい服装と靴でお越しください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
     },
     {
@@ -39,7 +39,7 @@ const events: WelcomeEvent[] = [
         date: "4月7日(火) 18:00〜20:00",
         location: "駒沢オリンピック公園",
         type: "offline",
-        description: "参加費: 無料 (イベント等は別途)\n持ち物: 運動しやすい服装と靴でお越しください！",
+        description: "参加費: 無料\n持ち物: 運動しやすい服装と靴でお越しください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
     },
     {
@@ -50,7 +50,7 @@ const events: WelcomeEvent[] = [
         date: "4月11日(土) 14:00〜18:00",
         location: "代々木公園",
         type: "offline",
-        description: "みんなで楽しくピクニックをして親睦を深めましょう！\n参加費: 無料 (イベント等は別途)\nぜひお気軽にご参加ください！",
+        description: "みんなで楽しくピクニックをして親睦を深めましょう！\n参加費: 無料\nぜひお気軽にご参加ください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
     },
     {
@@ -72,7 +72,7 @@ const events: WelcomeEvent[] = [
         date: "4月15日(水) 18:00〜20:00",
         location: "代々木公園",
         type: "offline",
-        description: "参加費: 無料 (イベント等は別途)\n持ち物: 運動しやすい服装と靴でお越しください！",
+        description: "参加費: 無料\n持ち物: 運動しやすい服装と靴でお越しください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
     },
     {
@@ -94,7 +94,7 @@ const events: WelcomeEvent[] = [
         date: "4月20日(月) 18:00〜20:00",
         location: "駒沢オリンピック公園",
         type: "offline",
-        description: "参加費: 無料 (イベント等は別途)\n持ち物: 運動しやすい服装と靴でお越しください！",
+        description: "参加費: 無料\n持ち物: 運動しやすい服装と靴でお越しください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
     },
     {
@@ -105,7 +105,7 @@ const events: WelcomeEvent[] = [
         date: "4月24日(金) 18:00〜20:00",
         location: "代々木公園",
         type: "offline",
-        description: "参加費: 無料 (イベント等は別途)\n持ち物: 運動しやすい服装と靴でお越しください！",
+        description: "参加費: 無料\n持ち物: 運動しやすい服装と靴でお越しください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
     },
     {
@@ -116,7 +116,7 @@ const events: WelcomeEvent[] = [
         date: "4月28日(火) 18:00〜20:00",
         location: "駒沢オリンピック公園",
         type: "offline",
-        description: "参加費: 無料 (イベント等は別途)\n持ち物: 運動しやすい服装と靴でお越しください！",
+        description: "参加費: 無料\n持ち物: 運動しやすい服装と靴でお越しください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
     },
     {
