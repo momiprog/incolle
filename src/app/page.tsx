@@ -58,7 +58,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-            サークル一覧
+            インカレサークル一覧
           </h2>
           <Link
             href="/circles"
@@ -68,6 +68,37 @@ export default function Home() {
           </Link>
         </div>
         <CircleCard />
+      </section>
+
+      {/* SEOテキストセクション - インカレ関連キーワードを自然に含む */}
+      <section className="bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-6 py-16">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+            インカレサークルとは？
+          </h2>
+          <div className="text-gray-600 leading-relaxed space-y-4 text-sm md:text-base">
+            <p>
+              <strong className="text-gray-800">インカレサークル</strong>（インターカレッジサークル）とは、複数の大学の学生が所属するサークルや学生団体のことです。
+              自分の大学だけでは出会えない仲間と活動できるのが、インカレサークルの最大の魅力です。
+            </p>
+            <p>
+              インカレサーチでは、スポーツ系・文化系・ボランティア系・イベント系など、さまざまなジャンルの<strong className="text-gray-800">インカレサークル</strong>を掲載しています。
+              活動内容や部員数、男女比、参加費といった詳しい情報から、あなたにぴったりのインカレサークルを見つけることができます。
+            </p>
+            <p>
+              新入生はもちろん、2年生以上・他大学からの参加・大学院生も歓迎しているインカレサークルが多数。
+              新歓イベント情報もまとめて掲載しているので、気になるインカレサークルの説明会やイベントに気軽に参加してみましょう。
+            </p>
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              href="/circles"
+              className="inline-block px-8 py-3 text-sm font-bold bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
+            >
+              インカレサークルを探す
+            </Link>
+          </div>
+        </div>
       </section>
     </div>
   );
