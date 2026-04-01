@@ -1,10 +1,30 @@
 import Header from "./components/layout/Header";
 import Link from "next/link";
 import CircleCard from "./components/CircleCard";
+import Script from "next/script";
+
+// 構造化データ（JSON-LD）- Googleの検索結果にリッチスニペットを表示するため
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "インカレサーチ",
+  url: "https://incolle.vercel.app",
+  description: "大学の垣根を超えたインカレサークルを探せる専門サイト。サークルの活動内容・部員数・新歓イベント情報を掲載中。",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://incolle.vercel.app/circles?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* JSON-LD 構造化データ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
 
       {/* ヒーローセクション */}

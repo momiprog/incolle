@@ -1,5 +1,15 @@
 import Header from "../components/layout/Header";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "インカレサーチについて",
+    description: "インカレサーチは、大学の枠を超えたインカレサークルを専門に紹介する検索サイトです。あなたが本当にやりたいこと、心から楽しめる居場所を見つけましょう。",
+    openGraph: {
+        title: "インカレサーチについて",
+        description: "大学の枠を超えて、本当に「夢中になれる」場所を見つけよう。インカレサークル専門の検索サイト。",
+    },
+};
 
 export default function About() {
     return (

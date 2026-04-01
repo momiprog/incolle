@@ -4,11 +4,40 @@ import { notFound } from "next/navigation";
 import ImageSlider from "../../components/ImageSlider";
 import Image from "next/image";
 import { events as allWelcomeEvents } from "../../data/welcomeEvents";
+import type { Metadata } from "next";
+
 type Props = {
   params: Promise<{
     id: string;
   }>;
 };
+
+// サークルごとに動的なメタデータを生成（SEO対策）
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const circle = circlesData.find((c) => c.id === parseInt(id, 10));
+
+  if (!circle) {
+    return { title: "サークルが見つかりません" };
+  }
+
+  const description = `${circle.name}の活動内容・部員数・新歓情報。${circle.description.slice(0, 100)}…`;
+
+  return {
+    title: circle.name,
+    description,
+    openGraph: {
+      title: `${circle.name} | インカレサーチ`,
+      description,
+      images: circle.images[0] ? [{ url: circle.images[0] }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${circle.name} | インカレサーチ`,
+      description,
+    },
+  };
+}
 
 export default async function CircleDetailPage({ params }: Props) {
   const { id } = await params;
@@ -23,9 +52,32 @@ export default async function CircleDetailPage({ params }: Props) {
   if (!circle) {
     return notFound();
   }
+  // サークル用の構造化データ（JSON-LD）
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: circle.name,
+    description: circle.description.slice(0, 200),
+    url: `https://incolle.vercel.app/circles/${circle.id}`,
+    location: circle.location,
+    memberOf: {
+      "@type": "Organization",
+      name: "インカレサーチ",
+    },
+    sameAs: [
+      circle.snsLinks?.x,
+      circle.snsLinks?.instagram,
+      circle.snsLinks?.website,
+    ].filter(Boolean),
+  };
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      {/* JSON-LD 構造化データ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
 
       {/* ヒーロー（上部のカバー画像）エリア */}

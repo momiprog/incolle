@@ -1,5 +1,15 @@
 import Header from "../components/layout/Header";
 import CircleCard from "../components/CircleCard";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "サークル一覧",
+    description: "インカレサーチに掲載中のインカレサークル一覧。活動内容や雰囲気をチェックして、あなたにぴったりのサークルを見つけよう。",
+    openGraph: {
+        title: "サークル一覧 | インカレサーチ",
+        description: "インカレサーチに掲載中のインカレサークル一覧。活動内容や雰囲気をチェックして、あなたにぴったりのサークルを見つけよう。",
+    },
+};
 
 export default function Search() {
     return (

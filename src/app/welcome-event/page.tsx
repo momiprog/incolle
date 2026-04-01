@@ -3,6 +3,16 @@ import Link from "next/link";
 import SakuraBackground from "../components/SakuraBackground";
 
 import { WelcomeEvent, events } from "../data/welcomeEvents";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "新歓イベント一覧 2025",
+    description: "インカレサークルの新歓イベント・説明会情報をまとめてチェック。日程・場所・参加費など、新入生に必要な情報を掲載中。",
+    openGraph: {
+        title: "新歓イベント一覧 2025 | インカレサーチ",
+        description: "インカレサークルの新歓イベント・説明会情報をまとめてチェック。日程・場所・参加費など、新入生に必要な情報を掲載中。",
+    },
+};
 
 export default function WelcomeEventPage() {
     return (
