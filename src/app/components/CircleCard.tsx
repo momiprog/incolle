@@ -20,6 +20,7 @@ export type Circle = {
     x?: string;
     instagram?: string;
     website?: string;
+    tiktok?: string;
   };
 };
 
@@ -101,6 +102,55 @@ export const circlesData: Circle[] = [
       x: "https://x.com/2026Dolphins",
       instagram: "https://www.instagram.com/dolphins_intercollegiate",
       website: "https://www.dolphins-intercollegiate.com/",
+    },
+  },
+  {
+    id: 4,
+    name: "カフェ巡りサークル巡りて",
+    description: "カフェ巡りは少人数、イベントは大人数の活動です。大人数がニガテな方も、みんなでワイワイしたい方もお話ししやすいサークルです！",
+    tags: ["カフェ", "グルメ", "イベント"],
+    universities: ["東洋大学", "共立女子大学", "横浜国立大学", "東京都市大学", "武蔵大学"],
+    images: [
+      "/images/megurite/megurite-1.jpg",
+      "/images/megurite/megurite-2.jpg",
+      "/images/megurite/megurite-3.jpg",
+      "/images/megurite/megurite-4.png",
+      "/images/megurite/megurite-5.png",
+    ],
+    activityDays: "週末、月2回",
+    memberCount: 36,
+    location: "東京都内、希に東京近郊",
+    fee: "年1,000円、イベントごとに会費2,500円程度",
+    genderRatio: "男3:女7",
+    snsLinks: {
+      x: "https://x.com/toyocafe0909",
+      instagram: "https://www.instagram.com/toyocafe0909?igsh=dnhxZzZjdDV2bHcy",
+      tiktok: "https://www.tiktok.com/@megurite0?_r=1&_t=ZS-959Nu7ocEcO",
+    },
+  },
+  {
+    id: 5,
+    name: "学生団体フェアトレードドリップパックプロジェクト",
+    description: `ラオス産のフェアトレードコーヒーを日本のイベントに出展して販売する活動を行っています。その利益は前期から本格的に始動したコーヒーの苗植樹プロジェクトの資金として還元されたりします。
+私たちの団体では、マーケティング、広報、財務など幅広くスキルアップができ、1年目からでも積極的に参加して団体に貢献していただけます。`,
+    tags: ["社会貢献", "フェアトレード", "コーヒー", "SDGs"],
+    universities: ["東洋大学", "東京理科大学", "明治大学"],
+    images: [
+      "/images/dripro/dripro-1.jpg",
+      "/images/dripro/dripro-2.jpg",
+      "/images/dripro/dripro-3.jpg",
+      "/images/dripro/dripro-4.jpg",
+      "/images/dripro/dripro-5.jpg",
+    ],
+    activityDays: "毎週月曜日18:30〜、週1〜2日",
+    memberCount: 13,
+    location: "東洋大学白山キャンパス、東京理科大学神楽坂キャンパス",
+    fee: "年3,000円（交通費・ラオス渡航費は自己負担）",
+    genderRatio: "男7:女3",
+    snsLinks: {
+      x: "https://x.com/DripPack_pro",
+      instagram: "https://www.instagram.com/dripro_laoscoffee",
+      website: "https://ft-drippack-project.jimdofree.com/%E3%83%89%E3%83%AA%E3%83%97%E3%83%AD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/%E7%90%86%E5%BF%B5/",
     },
   },
 ];
