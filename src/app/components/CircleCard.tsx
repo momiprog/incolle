@@ -19,6 +19,7 @@ export type Circle = {
   snsLinks?: {           // 各種SNSのリンク
     x?: string;
     instagram?: string;
+    website?: string;
   };
 };
 
@@ -76,6 +77,30 @@ export const circlesData: Circle[] = [
     snsLinks: {
       x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg",
       instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr",
+    },
+  },
+  {
+    id: 3,
+    name: "Dolphins",
+    description: "ダイビングサークルのDolphinsです！ほとんどの人が初心者からスタートしますが、周りの先輩方が優しくサポートしてくれるので気づいたらダイビングもDolphinsのことも大好きになっています。アットホームで居心地のいいサークルです！おひとり様入会、2年生以上、院生も大歓迎。入会お待ちしています！！",
+    tags: ["スポーツ", "アウトドア", "ダイビング", "海"],
+    universities: ["東京大学", "東京海洋大学", "慶應義塾大学", "電気通信大学", "明治大学", "中央大学", "芝浦工業大学", "その他"],
+    images: [
+      "/images/dolphins/dolphins-1.jpg",
+      "/images/dolphins/dolphins-2.jpg",
+      "/images/dolphins/dolphins-3.jpg",
+      "/images/dolphins/dolphins-4.jpg",
+      "/images/dolphins/dolphins-5.jpg",
+    ],
+    activityDays: "毎週末、月4回（強制なしの自由参加）",
+    memberCount: 120,
+    location: "伊豆、沖縄、小笠原諸島",
+    fee: "年会費¥3,800、一回の活動¥16,000前後（行き先や内容による）",
+    genderRatio: "男2:女1",
+    snsLinks: {
+      x: "https://x.com/2026Dolphins",
+      instagram: "https://www.instagram.com/dolphins_intercollegiate",
+      website: "https://www.dolphins-intercollegiate.com/",
     },
   },
 ];

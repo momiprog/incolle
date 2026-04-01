@@ -16,7 +16,7 @@ export default function ImageSlider({ images, alt, className = "" }: Props) {
   if (images.length === 1) {
     return (
       <div className={`relative ${className}`}>
-        <Image src={images[0]} alt={alt} fill className="object-cover" />
+        <Image src={images[0]} alt={alt} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover" />
       </div>
     );
   }
@@ -46,6 +46,7 @@ export default function ImageSlider({ images, alt, className = "" }: Props) {
               src={src}
               alt={`${alt} - ${idx + 1}枚目`}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
             />
           </div>

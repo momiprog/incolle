@@ -12,7 +12,7 @@ type Props = {
 
 export default async function CircleDetailPage({ params }: Props) {
   const { id } = await params;
-  
+
   // URLのIDを数値に変換し、circlesDataの中から一致するサークルを探します
   const circle = circlesData.find((c) => c.id === parseInt(id, 10));
 
@@ -27,13 +27,14 @@ export default async function CircleDetailPage({ params }: Props) {
   return (
     <div className="bg-slate-50 min-h-screen">
       <Header />
-      
+
       {/* ヒーロー（上部のカバー画像）エリア */}
       <div className="relative w-full h-[35vh] md:h-[45vh] bg-gray-900">
         <Image
           src={circle.images[0]}
           alt={circle.name}
           fill
+          sizes="100vw"
           className="object-cover opacity-80"
           priority
         />
@@ -43,7 +44,7 @@ export default async function CircleDetailPage({ params }: Props) {
       {/* メイン詳細コンテンツ - 画像に上に少し重なるように配置してモダンに */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 relative -mt-24 pb-20">
         <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
-          
+
           {/* タグ */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
             {circle.tags.map(tag => (
@@ -60,9 +61,9 @@ export default async function CircleDetailPage({ params }: Props) {
 
           {/* 写真スライダー */}
           <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-sm">
-            <ImageSlider 
-              images={circle.images} 
-              alt={`${circle.name}の活動風景`} 
+            <ImageSlider
+              images={circle.images}
+              alt={`${circle.name}の活動風景`}
               className="w-full h-full"
             />
           </div>
@@ -134,11 +135,11 @@ export default async function CircleDetailPage({ params }: Props) {
                     </div>
                     <div className="text-sm text-gray-600 space-y-2">
                       <p className="flex items-start gap-2">
-                        <span className="text-gray-400 shrink-0 mt-0.5">📅</span> 
+                        <span className="text-gray-400 shrink-0 mt-0.5">📅</span>
                         <span>{event.date}</span>
                       </p>
                       <p className="flex items-start gap-2">
-                        <span className="text-gray-400 shrink-0 mt-0.5">📍</span> 
+                        <span className="text-gray-400 shrink-0 mt-0.5">📍</span>
                         <span>{event.location}</span>
                       </p>
                     </div>
@@ -156,9 +157,9 @@ export default async function CircleDetailPage({ params }: Props) {
           {/* アクションボタン（クリックを促す） */}
           <div className="flex flex-col sm:flex-row gap-4 border-t border-gray-100 pt-8 mt-4">
             {circle.snsLinks?.x && (
-              <a 
-                href={circle.snsLinks.x} 
-                target="_blank" 
+              <a
+                href={circle.snsLinks.x}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-black text-white font-bold py-4 px-8 rounded-2xl hover:bg-gray-800 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
               >
@@ -168,11 +169,11 @@ export default async function CircleDetailPage({ params }: Props) {
                 公式Xを見る
               </a>
             )}
-            
+
             {circle.snsLinks?.instagram && (
-              <a 
-                href={circle.snsLinks.instagram} 
-                target="_blank" 
+              <a
+                href={circle.snsLinks.instagram}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white font-bold py-4 px-8 rounded-2xl hover:opacity-90 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
               >
@@ -182,13 +183,27 @@ export default async function CircleDetailPage({ params }: Props) {
                 公式Instagramを見る
               </a>
             )}
-            
+
+            {circle.snsLinks?.website && (
+              <a
+                href={circle.snsLinks.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-teal-500 text-white font-bold py-4 px-8 rounded-2xl hover:bg-teal-600 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
+              >
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                ホームページを見る
+              </a>
+            )}
+
             {/* リンクがどちらもない場合 */}
-            {!circle.snsLinks?.x && !circle.snsLinks?.instagram && (
+            {!circle.snsLinks?.x && !circle.snsLinks?.instagram && !circle.snsLinks?.website && (
               <p className="text-gray-500 text-sm text-center w-full py-4">SNSリンクは現在準備中です</p>
             )}
           </div>
-          
+
         </div>
       </main>
     </div>

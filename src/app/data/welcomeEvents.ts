@@ -11,6 +11,7 @@ export type WelcomeEvent = {
     snsLinks?: {
         x?: string;
         instagram?: string;
+        website?: string;
     };
 };
 
@@ -103,6 +104,17 @@ export const events: WelcomeEvent[] = [
         type: "offline",
         description: "参加費: 無料\n持ち物: 運動しやすい服装と靴でお越しください！",
         snsLinks: { x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg", instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr" },
+    },
+    {
+        id: 12,
+        circleId: 3,
+        circleName: "Dolphins",
+        eventName: "キックオフパーティー",
+        date: "4月26日(日)",
+        location: "真鶴半島・福浦（JR真鶴駅集合）",
+        type: "offline",
+        description: "内容: スノーケリング、BBQ、レク\n費用: ¥5,000",
+        snsLinks: { x: "https://x.com/2026Dolphins", instagram: "https://www.instagram.com/dolphins_intercollegiate", website: "https://www.dolphins-intercollegiate.com/" },
     },
     {
         id: 11,
