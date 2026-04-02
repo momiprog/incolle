@@ -51,8 +51,17 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* コピーライト */}
-                <div className="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500">
+                {/* コピーライト・法的リンク */}
+                <div className="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500 space-y-2">
+                    <div className="flex justify-center gap-4">
+                        <Link href="/terms" className="hover:text-white transition-colors">
+                            利用規約
+                        </Link>
+                        <span>|</span>
+                        <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                            プライバシーポリシー
+                        </Link>
+                    </div>
                     <p>© {new Date().getFullYear()} インカレサーチ - インカレサークル専門紹介サイト</p>
                 </div>
             </div>
