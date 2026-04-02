@@ -153,6 +153,31 @@ export const circlesData: Circle[] = [
       website: "https://ft-drippack-project.jimdofree.com/%E3%83%89%E3%83%AA%E3%83%97%E3%83%AD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/%E7%90%86%E5%BF%B5/",
     },
   },
+  {
+    id: 6,
+    name: "インカレバスケサークルDUNK",
+    description: `大学の枠を超えてバスケットボールを楽しみながら、仲間と最高の思い出を作れます！初心者から経験者まで沢山の人がいて遊びバスケなどもあり誰でも楽しむことができます。誰1人も置いていかずにみんなの輪で楽しむことがモットウにしており、和気あいあいとしたバスケの練習はもちろん、バスケの大会にも力を入れています。
+また3年目となり人数も増え他にはないオリジナルイベントや合宿などの規模も拡大中です。DUNKを通して新しい仲間と一緒に充実した大学生活を送りたい方、ぜひ参加お待ちしてます！`,
+    tags: ["スポーツ", "バスケ"],
+    universities: ["日本大学", "東京農業大学"],
+    images: [
+      "/images/dunk/dunk-5.jpg",
+      "/images/dunk/dunk-1.jpg",
+      "/images/dunk/dunk-2.jpg",
+      "/images/dunk/dunk-3.jpg",
+      "/images/dunk/dunk-4.jpg",
+    ],
+    activityDays: "練習月3回〜4回、イベント月1回",
+    memberCount: 50,
+    location: "足立区、世田谷区、豊島区",
+    fee: "年間3,200円",
+    genderRatio: "男6:女4",
+    snsLinks: {
+      x: "https://x.com/incolle_dunk",
+      instagram: "https://www.instagram.com/incolle_dunk",
+      tiktok: "https://www.tiktok.com/@dunk6652",
+    },
+  },
 ];
 
 function CircleCard({ circle }: { circle: Circle }) {
