@@ -219,7 +219,7 @@ export const events: WelcomeEvent[] = [
         id: 19,
         circleId: 6,
         circleName: "インカレバスケサークルDUNK",
-        eventName: "新歓バスケ🏀",
+        eventName: "新歓イベント🎉",
         date: "4月16日(木) 19:00〜21:00",
         location: "池袋",
         type: "offline",
