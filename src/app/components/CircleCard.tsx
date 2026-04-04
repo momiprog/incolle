@@ -178,6 +178,59 @@ export const circlesData: Circle[] = [
       tiktok: "https://www.tiktok.com/@dunk6652",
     },
   },
+  {
+    id: 7,
+    name: "ホワイトレーベル関東",
+    description: `とにかくスノボーをする！横のつながりを増やす！
+大学の枠を超えてスノーボードを楽しみたい仲間が集まるサークルです。初心者から上級者まで、みんなで一緒にゲレンデを楽しみましょう！`,
+    tags: ["スポーツ", "スノボ", "アウトドア"],
+    universities: ["国士舘大学"],
+    images: [
+      "/images/whitelabel/whitelabel-1.jpg",
+      "/images/whitelabel/whitelabel-2.jpg",
+      "/images/whitelabel/whitelabel-3.jpg",
+      "/images/whitelabel/whitelabel-4.jpg",
+      "/images/whitelabel/whitelabel-5.jpg",
+    ],
+    activityDays: "月1回",
+    memberCount: 30,
+    location: "群馬",
+    fee: "1イベント4,000円",
+    genderRatio: "男4:女6",
+    snsLinks: {
+      instagram: "https://www.instagram.com/whitelabel_kanto",
+    },
+  },
+  {
+    id: 8,
+    name: "学生地域参画隊Convers",
+    description: `「地域の声を届け、若者の声を届ける」をモットーに掲げ、地域に密着した活動を行っています。一般的にイメージされる「ボランティア＝お手伝い」という枠に留まらず、自分たちでイベントを企画したり、既存のイベントの実行委員会への参画・出店をしたりすることによって、主体的に地域と関わりを持ち、地域活性化や世代間交流につながる場を作り出すことを目指しています。
+
+◯全員で取り組む活動
+① 主催（共催）イベントの開催
+② 地域のイベント実行委員会への参画・出店
+
+◯チーム活動
+① 子ども福祉チーム
+複数の子ども食堂のお手伝いや子ども向けワークショップの開催
+② 高齢者福祉チーム
+スマホ困りごと相談会の開催、Conversと地域がつながる文通プロジェクトに参加`,
+    tags: ["ボランティア", "地域活性化", "社会貢献"],
+    universities: ["奈良女子大学", "奈良大学"],
+    images: [
+      "/images/convers/convers-1.jpg",
+      "/images/convers/convers-2.jpg",
+    ],
+    activityDays: "チーム活動は最低月1回、定例会月1回、その他イベント準備会月1回程度",
+    memberCount: 10,
+    location: "奈良市ボランティアインフォメーションセンター（会合）、その他活動場所は活動により異なる",
+    fee: "年会費3,000円（大学生）、1,000円（高校生）",
+    genderRatio: "男3:女7",
+    snsLinks: {
+      x: "https://x.com/convers_gakusei",
+      instagram: "https://www.instagram.com/convers_naragaku",
+    },
+  },
 ];
 
 function CircleCard({ circle }: { circle: Circle }) {
