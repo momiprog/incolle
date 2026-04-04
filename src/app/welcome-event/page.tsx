@@ -105,19 +105,21 @@ export default function WelcomeEventPage() {
                                                 href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="text-sm font-bold text-gray-600 hover:text-blue-600 flex items-center gap-1.5 bg-gray-50 hover:bg-blue-50 px-3 py-1.5 rounded-md transition-colors shrink-0"
+                                                className="text-sm font-bold text-gray-600 hover:text-blue-600 flex items-start gap-1.5 bg-gray-50 hover:bg-blue-50 px-3 py-2 rounded-md transition-colors flex-1 min-w-0"
                                                 title="Googleマップで開く"
                                             >
-                                                📍 <span className="underline decoration-gray-300 underline-offset-4">{event.location}</span>
+                                                <span className="shrink-0 mt-0.5">📍</span>
+                                                <span className="underline decoration-gray-300 underline-offset-4 break-words line-clamp-2">{event.location}</span>
                                             </a>
                                         ) : (
-                                            <div className="text-sm font-bold text-gray-500 flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-md shrink-0">
-                                                💻 {event.location}
+                                            <div className="text-sm font-bold text-gray-500 flex items-start gap-1.5 bg-gray-50 px-3 py-2 rounded-md flex-1 min-w-0">
+                                                <span className="shrink-0 mt-0.5">💻</span>
+                                                <span className="break-words line-clamp-2">{event.location}</span>
                                             </div>
                                         )}
 
                                         {/* 右側: 新歓用SNSリンク */}
-                                        <div className="flex flex-wrap gap-2 w-full sm:w-auto mt-2 sm:mt-0 justify-end">
+                                        <div className="flex flex-wrap gap-2 w-full sm:w-auto mt-2 sm:mt-0 justify-end shrink-0">
                                             {event.snsLinks?.x && (
                                                 <a
                                                     href={event.snsLinks.x}
