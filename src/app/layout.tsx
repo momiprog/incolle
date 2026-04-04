@@ -15,15 +15,15 @@ const geistMono = Geist_Mono({
 
 const siteUrl = "https://incolle.vercel.app";
 const siteName = "インカレサーチ";
-const defaultDescription = "大学の垣根を超えたインカレサークルを探せる専門サイト。サークルの活動内容・部員数・新歓イベント情報を掲載中。あなたにぴったりのインカレサークルがきっと見つかります。";
+const defaultDescription = "大学の垣根を超えたインカレサークル・学生団体を探せる専門サイト。サークル・学生団体の活動内容・部員数・新歓イベント情報を掲載中。あなたにぴったりのインカレサークル・学生団体がきっと見つかります。";
 
 export const metadata: Metadata = {
   title: {
-    default: "インカレサーチ｜インカレサークル専門紹介サイト",
+    default: "インカレサーチ｜インカレサークル・学生団体専門紹介サイト",
     template: "%s | インカレサーチ",
   },
   description: defaultDescription,
-  keywords: ["インカレ", "インカレサークル", "大学サークル", "サークル検索", "新歓", "新歓イベント", "大学生", "インターカレッジ", "サークル紹介"],
+  keywords: ["インカレ", "インカレサークル", "学生団体", "大学サークル", "サークル検索", "新歓", "新歓イベント", "大学生", "インターカレッジ", "サークル紹介", "ボランティア団体"],
   authors: [{ name: siteName }],
   creator: siteName,
   metadataBase: new URL(siteUrl),
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     url: siteUrl,
     siteName: siteName,
-    title: "インカレサーチ｜インカレサークル専門紹介サイト",
+    title: "インカレサーチ｜インカレサークル・学生団体専門紹介サイト",
     description: defaultDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: "インカレサーチ｜インカレサークル専門紹介サイト",
+    title: "インカレサーチ｜インカレサークル・学生団体専門紹介サイト",
     description: defaultDescription,
   },
   robots: {

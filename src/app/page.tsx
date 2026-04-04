@@ -39,11 +39,11 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
             インカレサーチは<br />
             インカレ専門の<br className="md:hidden" />
-            サークル紹介サイトです
+            サークル・学生団体紹介サイトです
           </h1>
           <p className="mt-6 text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">
             大学の垣根を超えた仲間と出会おう。
-            あなたにぴったりのインカレサークルがきっと見つかります。
+            あなたにぴったりのインカレサークル・学生団体がきっと見つかります。
           </p>
           <Link
             href="/about"
@@ -58,7 +58,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
-            インカレサークル一覧
+            インカレサークル・学生団体一覧
           </h2>
           <Link
             href="/circles"
@@ -74,20 +74,20 @@ export default function Home() {
       <section className="bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-6 py-16">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-            インカレサークルとは？
+            インカレサークル・学生団体とは？
           </h2>
           <div className="text-gray-600 leading-relaxed space-y-4 text-sm md:text-base">
             <p>
-              <strong className="text-gray-800">インカレサークル</strong>（インターカレッジサークル）とは、複数の大学の学生が所属するサークルや学生団体のことです。
-              自分の大学だけでは出会えない仲間と活動できるのが、インカレサークルの最大の魅力です。
+              <strong className="text-gray-800">インカレサークル</strong>（インターカレッジサークル）や<strong className="text-gray-800">学生団体</strong>とは、複数の大学の学生が所属する団体のことです。
+              自分の大学だけでは出会えない仲間と活動できるのが、最大の魅力です。
             </p>
             <p>
-              インカレサーチでは、スポーツ系・文化系・ボランティア系・イベント系など、さまざまなジャンルの<strong className="text-gray-800">インカレサークル</strong>を掲載しています。
-              活動内容や部員数、男女比、参加費といった詳しい情報から、あなたにぴったりのインカレサークルを見つけることができます。
+              インカレサーチでは、スポーツ系・文化系・ボランティア系・イベント系など、さまざまなジャンルの<strong className="text-gray-800">インカレサークル・学生団体</strong>を掲載しています。
+              活動内容や部員数、男女比、参加費といった詳しい情報から、あなたにぴったりの団体を見つけることができます。
             </p>
             <p>
-              新入生はもちろん、2年生以上・他大学からの参加・大学院生も歓迎しているインカレサークルが多数。
-              新歓イベント情報もまとめて掲載しているので、気になるインカレサークルの説明会やイベントに気軽に参加してみましょう。
+              新入生はもちろん、2年生以上・他大学からの参加・大学院生も歓迎している団体が多数。
+              新歓イベント情報もまとめて掲載しているので、気になるサークルや学生団体の説明会・イベントに気軽に参加してみましょう。
             </p>
           </div>
           <div className="text-center mt-8">
@@ -95,7 +95,7 @@ export default function Home() {
               href="/circles"
               className="inline-block px-8 py-3 text-sm font-bold bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
             >
-              インカレサークルを探す
+              サークル・学生団体を探す
             </Link>
           </div>
         </div>
