@@ -231,6 +231,27 @@ export const circlesData: Circle[] = [
       instagram: "https://www.instagram.com/convers_naragaku",
     },
   },
+  {
+    id: 9,
+    name: "トライシェア",
+    description: `【トライシェア概要】
+トライシェアは大阪の大学生が立ち上げた体験共有型インカレサークルです。
+活動内容としてはZoomや対面で月次の決起集会を行い、先月の「挑戦」と来月の目標を共有しています。
+行動するきっかけや刺激が欲しい方は是非お気軽にご参加ください！`,
+    tags: ["オンライン", "交流", "体験共有"],
+    universities: ["大阪公立大学", "同志社大学", "立命館大学"],
+    images: [
+      "/images/tryshare/tryshare-1.png",
+    ],
+    activityDays: "毎月1日(前後あり)",
+    memberCount: 10,
+    location: "Zoom",
+    fee: "無料",
+    genderRatio: "男10:女0",
+    snsLinks: {
+      instagram: "https://www.instagram.com/try__share?igsh=MXg1Mms0ZW01eTJmMQ%3D%3D&utm_source=qr",
+    },
+  },
 ];
 
 function CircleCard({ circle }: { circle: Circle }) {
