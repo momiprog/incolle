@@ -44,7 +44,7 @@ export default async function CircleDetailPage({ params }: Props) {
   const { id } = await params;
 
   // dbからサークル情報を取得
-  const { data: circle } = await supabase.from('circles').select('*').eq('id', parseInt(id, 10)).single();
+  const { data: circle } = await supabase.from('circle').select('*').eq('id', parseInt(id, 10)).single();
 
   // このサークルの新歓イベントを取得
   const welcomeEvents = allWelcomeEvents.filter((e) => e.circleId === parseInt(id, 10));
