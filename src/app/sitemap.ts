@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { circlesData } from "./components/CircleCard";
+import { supabase } from "../utils/supabase";
 
 const siteUrl = "https://incolle.vercel.app";
 
 // サイトマップを動的に生成（サークルが追加されると自動で反映）
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 固定ページ
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -33,8 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // DBから全てのサークルIDを取得
+  const { data: circles } = await supabase.from('circle').select('id');
+
   // サークル詳細ページ（動的に生成）
-  const circlePages: MetadataRoute.Sitemap = circlesData.map((circle) => ({
+  const circlePages: MetadataRoute.Sitemap = (circles || []).map((circle) => ({
     url: `${siteUrl}/circles/${circle.id}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,

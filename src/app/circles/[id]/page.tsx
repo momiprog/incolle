@@ -1,5 +1,5 @@
 import Header from "../../components/layout/Header";
-import { circlesData } from "../../components/CircleCard";
+import { supabase } from "../../../utils/supabase";
 import { notFound } from "next/navigation";
 import ImageSlider from "../../components/ImageSlider";
 import Image from "next/image";
@@ -15,13 +15,14 @@ type Props = {
 // サークルごとに動的なメタデータを生成（SEO対策）
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const circle = circlesData.find((c) => c.id === parseInt(id, 10));
+  const { data: circle } = await supabase.from('circle').select('*').eq('id', parseInt(id, 10)).single();
 
   if (!circle) {
     return { title: "サークルが見つかりません" };
   }
 
   const description = `${circle.name}の活動内容・部員数・新歓情報。${circle.description.slice(0, 100)}…`;
+  const mainImage = circle.images_url && circle.images_url.length > 0 ? circle.images_url[0] : "";
 
   return {
     title: circle.name,
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${circle.name} | インカレサーチ`,
       description,
-      images: circle.images[0] ? [{ url: circle.images[0] }] : [],
+      images: mainImage ? [{ url: mainImage }] : [],
     },
     twitter: {
       card: "summary_large_image",
@@ -42,8 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CircleDetailPage({ params }: Props) {
   const { id } = await params;
 
-  // URLのIDを数値に変換し、circlesDataの中から一致するサークルを探します
-  const circle = circlesData.find((c) => c.id === parseInt(id, 10));
+  // dbからサークル情報を取得
+  const { data: circle } = await supabase.from('circles').select('*').eq('id', parseInt(id, 10)).single();
 
   // このサークルの新歓イベントを取得
   const welcomeEvents = allWelcomeEvents.filter((e) => e.circleId === parseInt(id, 10));
@@ -65,9 +66,9 @@ export default async function CircleDetailPage({ params }: Props) {
       name: "インカレサーチ",
     },
     sameAs: [
-      circle.snsLinks?.x,
-      circle.snsLinks?.instagram,
-      circle.snsLinks?.website,
+      circle.x_link,
+      circle.instagram_link,
+      circle.website_link,
     ].filter(Boolean),
   };
 
@@ -83,7 +84,7 @@ export default async function CircleDetailPage({ params }: Props) {
       {/* ヒーロー（上部のカバー画像）エリア */}
       <div className="relative w-full h-[35vh] md:h-[45vh] bg-gray-900">
         <Image
-          src={circle.images[0]}
+          src={circle.images_url && circle.images_url.length > 0 ? circle.images_url[0] : "/images/placeholder.jpg"}
           alt={circle.name}
           fill
           sizes="100vw"
@@ -99,7 +100,7 @@ export default async function CircleDetailPage({ params }: Props) {
 
           {/* タグ */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            {circle.tags.map(tag => (
+            {circle.tags && circle.tags.map((tag: string) => (
               <span key={tag} className="bg-blue-100 text-blue-700 font-bold px-4 py-1.5 rounded-full text-sm">
                 #{tag}
               </span>
@@ -112,13 +113,15 @@ export default async function CircleDetailPage({ params }: Props) {
           </h1>
 
           {/* 写真スライダー */}
-          <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-sm">
-            <ImageSlider
-              images={circle.images}
-              alt={`${circle.name}の活動風景`}
-              className="w-full h-full"
-            />
-          </div>
+          {circle.images_url && circle.images_url.length > 0 && (
+            <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-sm">
+              <ImageSlider
+                images={circle.images_url}
+                alt={`${circle.name}の活動風景`}
+                className="w-full h-full"
+              />
+            </div>
+          )}
 
           {/* サークル基本情報（新しく追加した項目） */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50 p-6 rounded-2xl mb-8 border border-gray-100">
@@ -126,14 +129,14 @@ export default async function CircleDetailPage({ params }: Props) {
               <span className="text-xl">📅</span>
               <div>
                 <dt className="text-xs text-gray-500 font-bold">活動日</dt>
-                <dd className="text-gray-800 font-medium">{circle.activityDays}</dd>
+                <dd className="text-gray-800 font-medium">{circle.activity_days || "-"}</dd>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl">👥</span>
               <div>
                 <dt className="text-xs text-gray-500 font-bold">部員数</dt>
-                <dd className="text-gray-800 font-medium">{circle.memberCount}名</dd>
+                <dd className="text-gray-800 font-medium">{circle.member_count ? `${circle.member_count}名` : "-"}</dd>
               </div>
             </div>
             {circle.location && (
@@ -149,21 +152,14 @@ export default async function CircleDetailPage({ params }: Props) {
               <span className="text-xl">🎓</span>
               <div>
                 <dt className="text-xs text-gray-500 font-bold">主な大学</dt>
-                <dd className="text-gray-800 font-medium">{circle.universities.join("・")}</dd>
+                <dd className="text-gray-800 font-medium">{circle.universities ? circle.universities.join("・") : "-"}</dd>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl">💰</span>
               <div>
                 <dt className="text-xs text-gray-500 font-bold">活動費</dt>
-                <dd className="text-gray-800 font-medium">{circle.fee}</dd>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xl">👫</span>
-              <div>
-                <dt className="text-xs text-gray-500 font-bold">男女比</dt>
-                <dd className="text-gray-800 font-medium">{circle.genderRatio}</dd>
+                <dd className="text-gray-800 font-medium">{circle.fee || "-"}</dd>
               </div>
             </div>
           </div>
@@ -208,9 +204,9 @@ export default async function CircleDetailPage({ params }: Props) {
 
           {/* アクションボタン（クリックを促す） */}
           <div className="flex flex-col sm:flex-row gap-4 border-t border-gray-100 pt-8 mt-4">
-            {circle.snsLinks?.x && (
+            {circle.x_link && (
               <a
-                href={circle.snsLinks.x}
+                href={circle.x_link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-black text-white font-bold py-4 px-8 rounded-2xl hover:bg-gray-800 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
@@ -222,9 +218,9 @@ export default async function CircleDetailPage({ params }: Props) {
               </a>
             )}
 
-            {circle.snsLinks?.instagram && (
+            {circle.instagram_link && (
               <a
-                href={circle.snsLinks.instagram}
+                href={circle.instagram_link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white font-bold py-4 px-8 rounded-2xl hover:opacity-90 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
@@ -236,9 +232,9 @@ export default async function CircleDetailPage({ params }: Props) {
               </a>
             )}
 
-            {circle.snsLinks?.website && (
+            {circle.website_link && (
               <a
-                href={circle.snsLinks.website}
+                href={circle.website_link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-teal-500 text-white font-bold py-4 px-8 rounded-2xl hover:bg-teal-600 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
@@ -250,9 +246,9 @@ export default async function CircleDetailPage({ params }: Props) {
               </a>
             )}
 
-            {circle.snsLinks?.tiktok && (
+            {circle.tiktok_link && (
               <a
-                href={circle.snsLinks.tiktok}
+                href={circle.tiktok_link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-gray-900 text-white font-bold py-4 px-8 rounded-2xl hover:bg-gray-700 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
@@ -265,7 +261,7 @@ export default async function CircleDetailPage({ params }: Props) {
             )}
 
             {/* リンクがどちらもない場合 */}
-            {!circle.snsLinks?.x && !circle.snsLinks?.instagram && !circle.snsLinks?.website && !circle.snsLinks?.tiktok && (
+            {!circle.x_link && !circle.instagram_link && !circle.website_link && !circle.tiktok_link && (
               <p className="text-gray-500 text-sm text-center w-full py-4">SNSリンクは現在準備中です</p>
             )}
           </div>

@@ -1,266 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
+import { supabase } from "../../utils/supabase";
 
-// サークルデータの型定義
+// Supabaseテーブルの構造に合わせたサークルデータの型定義
 export type Circle = {
   id: number;
   name: string;
-  description: string;   // サークルの説明文
-  tags: string[];        // 複数のタグ
-  universities: string[]; // 複数の大学
-  images: string[];       // 複数の画像
-
-  // 今後追加すると良さそうな情報
-  activityDays: string;  // 活動日
-  memberCount: number;   // 部員数
-  location?: string;     // 活動場所
-  fee: string;           // 活動費
-  genderRatio: string;   // 男女比
-  snsLinks?: {           // 各種SNSのリンク
-    x?: string;
-    instagram?: string;
-    website?: string;
-    tiktok?: string;
-  };
+  description: string;
+  tags: string[];
+  universities: string[];
+  images_url: string[];
+  activity_days: string | null;
+  member_count: number | null;
+  location: string | null;
+  fee: string | null;
+  tiktok_link: string | null;
+  x_link: string | null;
+  instagram_link: string | null;
+  website_link: string | null;
 };
 
-// 仮データ
-export const circlesData: Circle[] = [
-  {
-    id: 1,
-    name: "学生団体廃校文化祭実行委員会CSF",
-    description: `「廃校をもっと身近に」という理念のもと、池袋にある廃校を活動拠点としてイベントを開催している団体です🏫🌱
-イベントを開催し、廃校に足を運んでもらうことで、廃校活用の楽しさや可能性を肌で感じてもらうことを、地域創生活動の一環として行っています。
-普段のミーツでは、地域創生局・運営局・広報局・渉外局といった4つの局編成のもと、自分のやりたい分野に近い局を選び、イベントに向けた準備を行っています。
-所属しているメンバーは個性豊かで優しく、友達思いな人が多いです🤝🏻
-毎週行っているミーツ以外でも、プライベートで集まって遊ぶことが多いです👀
-メンバーはイベントが大好きで、夏には花火大会に行くなど、活動以外でも充実すること間違いなしです！
-大学というコミュニティを超えたこの団体で、たくさんの思い出と経験を得ましょう！！`,
-    tags: ["イベント"],
-    universities: ["日本大学", "その他大学"],
-    images: [
-      "/images/csf/csf-1.webp",
-      "/images/csf/csf-2.webp",
-      "/images/csf/csf-3.webp",
-      "/images/csf/csf-4.webp",
-      "/images/csf/csf-5.webp"
-    ],
-    activityDays: "毎週金曜日 19〜21時",
-    memberCount: 25,
-    location: "東京都豊島区池袋三丁目30-8 みらい館大明",
-    fee: "",
-    genderRatio: "男6:女4",
-    snsLinks: {           // 各種SNSのリンク
-      x: "https://x.com/closedschool",
-      instagram: "https://www.instagram.com/closed_school_festival",
-    },
-  },
-  {
-    id: 2,
-    name: "インカレ鬼ごっこサークル【Goblin's】",
-    description: `週1回都内の公園で鬼ごっこなどをやったり月1回様々なイベントを開催していたり春、夏、秋、冬、に合宿(旅行)に行きます！
-
-サークルの活動以外にもみんなで定期的に一緒にゲームをしたり、キックボクシングをしたり、カラオケに行ったりもしています！`,
-    tags: ["スポーツ", "イベント", "アウトドア"],
-    universities: ["青山学院大学", "専修大学", "早稲田大学", "東京農業大学", "日本大学", "神奈川大学"],
-    images: [
-      "/images/goblin's/goblin-1.webp",
-      "/images/goblin's/goblin-2.webp",
-      "/images/goblin's/goblin-3.webp",
-      "/images/goblin's/goblin-4.webp",
-      "/images/goblin's/goblin-5.webp",
-    ], // 画像を設定しました
-    activityDays: "週1〜2日",
-    memberCount: 100,
-    location: "代々木公園、駒沢オリンピック公園、西六郷公園",
-    fee: "年会費なし、鬼ごっこ無料、イベントはその都度",
-    genderRatio: "男6:女4",
-    snsLinks: {
-      x: "https://x.com/onigokkos?s=21&t=sH7dciIMytSV-yF9Tj5cqg",
-      instagram: "https://www.instagram.com/onigokkos_insta?igsh=OXV3amtkMjRpeXQ4&utm_source=qr",
-    },
-  },
-  {
-    id: 3,
-    name: "Dolphins",
-    description: "ダイビングサークルのDolphinsです！ほとんどの人が初心者からスタートしますが、周りの先輩方が優しくサポートしてくれるので気づいたらダイビングもDolphinsのことも大好きになっています。アットホームで居心地のいいサークルです！おひとり様入会、2年生以上、院生も大歓迎。入会お待ちしています！！",
-    tags: ["スポーツ", "アウトドア", "ダイビング", "海"],
-    universities: ["東京大学", "東京海洋大学", "慶應義塾大学", "電気通信大学", "明治大学", "中央大学", "芝浦工業大学", "その他"],
-    images: [
-      "/images/dolphins/dolphins-1.jpg",
-      "/images/dolphins/dolphins-2.jpg",
-      "/images/dolphins/dolphins-3.jpg",
-      "/images/dolphins/dolphins-4.jpg",
-      "/images/dolphins/dolphins-5.jpg",
-    ],
-    activityDays: "毎週末、月4回（強制なしの自由参加）",
-    memberCount: 120,
-    location: "伊豆、沖縄、小笠原諸島",
-    fee: "年会費¥3,800、一回の活動¥16,000前後（行き先や内容による）",
-    genderRatio: "男2:女1",
-    snsLinks: {
-      x: "https://x.com/2026Dolphins",
-      instagram: "https://www.instagram.com/dolphins_intercollegiate",
-      website: "https://www.dolphins-intercollegiate.com/",
-    },
-  },
-  {
-    id: 4,
-    name: "カフェ巡りサークル巡りて",
-    description: "カフェ巡りは少人数、イベントは大人数の活動です。大人数がニガテな方も、みんなでワイワイしたい方もお話ししやすいサークルです！",
-    tags: ["カフェ", "グルメ", "イベント"],
-    universities: ["東洋大学", "共立女子大学", "横浜国立大学", "東京都市大学", "武蔵大学"],
-    images: [
-      "/images/megurite/megurite-1.jpg",
-      "/images/megurite/megurite-2.jpg",
-      "/images/megurite/megurite-3.jpg",
-      "/images/megurite/megurite-4.png",
-      "/images/megurite/megurite-5.png",
-    ],
-    activityDays: "週末、月2回",
-    memberCount: 36,
-    location: "東京都内、希に東京近郊",
-    fee: "年1,000円、イベントごとに会費2,500円程度",
-    genderRatio: "男3:女7",
-    snsLinks: {
-      x: "https://x.com/toyocafe0909",
-      instagram: "https://www.instagram.com/toyocafe0909?igsh=dnhxZzZjdDV2bHcy",
-      tiktok: "https://www.tiktok.com/@megurite0?_r=1&_t=ZS-959Nu7ocEcO",
-    },
-  },
-  {
-    id: 5,
-    name: "学生団体フェアトレードドリップパックプロジェクト",
-    description: `ラオス産のフェアトレードコーヒーを日本のイベントに出展して販売する活動を行っています。その利益は前期から本格的に始動したコーヒーの苗植樹プロジェクトの資金として還元されたりします。
-私たちの団体では、マーケティング、広報、財務など幅広くスキルアップができ、1年目からでも積極的に参加して団体に貢献していただけます。`,
-    tags: ["社会貢献", "フェアトレード", "コーヒー", "SDGs"],
-    universities: ["東洋大学", "東京理科大学", "明治大学"],
-    images: [
-      "/images/dripro/dripro-1.jpg",
-      "/images/dripro/dripro-2.jpg",
-      "/images/dripro/dripro-3.jpg",
-      "/images/dripro/dripro-4.jpg",
-      "/images/dripro/dripro-5.jpg",
-    ],
-    activityDays: "毎週月曜日18:30〜、週1〜2日",
-    memberCount: 13,
-    location: "東洋大学白山キャンパス、東京理科大学神楽坂キャンパス",
-    fee: "年3,000円（交通費・ラオス渡航費は自己負担）",
-    genderRatio: "男7:女3",
-    snsLinks: {
-      x: "https://x.com/DripPack_pro",
-      instagram: "https://www.instagram.com/dripro_laoscoffee",
-      website: "https://ft-drippack-project.jimdofree.com/%E3%83%89%E3%83%AA%E3%83%97%E3%83%AD%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/%E7%90%86%E5%BF%B5/",
-    },
-  },
-  {
-    id: 6,
-    name: "インカレバスケサークルDUNK",
-    description: `大学の枠を超えてバスケットボールを楽しみながら、仲間と最高の思い出を作れます！初心者から経験者まで沢山の人がいて遊びバスケなどもあり誰でも楽しむことができます。誰1人も置いていかずにみんなの輪で楽しむことがモットウにしており、和気あいあいとしたバスケの練習はもちろん、バスケの大会にも力を入れています。
-また3年目となり人数も増え他にはないオリジナルイベントや合宿などの規模も拡大中です。DUNKを通して新しい仲間と一緒に充実した大学生活を送りたい方、ぜひ参加お待ちしてます！`,
-    tags: ["スポーツ", "バスケ"],
-    universities: ["日本大学", "東京農業大学"],
-    images: [
-      "/images/dunk/dunk-5.jpg",
-      "/images/dunk/dunk-1.jpg",
-      "/images/dunk/dunk-2.jpg",
-      "/images/dunk/dunk-3.jpg",
-      "/images/dunk/dunk-4.jpg",
-    ],
-    activityDays: "練習月3回〜4回、イベント月1回",
-    memberCount: 50,
-    location: "足立区、世田谷区、豊島区",
-    fee: "年間3,200円",
-    genderRatio: "男6:女4",
-    snsLinks: {
-      x: "https://x.com/incolle_dunk",
-      instagram: "https://www.instagram.com/incolle_dunk",
-      tiktok: "https://www.tiktok.com/@dunk6652",
-    },
-  },
-  {
-    id: 7,
-    name: "ホワイトレーベル関東",
-    description: `とにかくスノボーをする！横のつながりを増やす！
-大学の枠を超えてスノーボードを楽しみたい仲間が集まるサークルです。初心者から上級者まで、みんなで一緒にゲレンデを楽しみましょう！`,
-    tags: ["スポーツ", "スノボ", "アウトドア"],
-    universities: ["国士舘大学"],
-    images: [
-      "/images/whitelabel/whitelabel-1.jpg",
-      "/images/whitelabel/whitelabel-2.jpg",
-      "/images/whitelabel/whitelabel-3.jpg",
-      "/images/whitelabel/whitelabel-4.jpg",
-      "/images/whitelabel/whitelabel-5.jpg",
-    ],
-    activityDays: "月1回",
-    memberCount: 30,
-    location: "群馬",
-    fee: "1イベント4,000円",
-    genderRatio: "男4:女6",
-    snsLinks: {
-      instagram: "https://www.instagram.com/whitelabel_kanto",
-    },
-  },
-  {
-    id: 8,
-    name: "学生地域参画隊Convers",
-    description: `「地域の声を届け、若者の声を届ける」をモットーに掲げ、地域に密着した活動を行っています。一般的にイメージされる「ボランティア＝お手伝い」という枠に留まらず、自分たちでイベントを企画したり、既存のイベントの実行委員会への参画・出店をしたりすることによって、主体的に地域と関わりを持ち、地域活性化や世代間交流につながる場を作り出すことを目指しています。
-
-◯全員で取り組む活動
-① 主催（共催）イベントの開催
-② 地域のイベント実行委員会への参画・出店
-
-◯チーム活動
-① 子ども福祉チーム
-複数の子ども食堂のお手伝いや子ども向けワークショップの開催
-② 高齢者福祉チーム
-スマホ困りごと相談会の開催、Conversと地域がつながる文通プロジェクトに参加`,
-    tags: ["ボランティア", "地域活性化", "社会貢献"],
-    universities: ["奈良女子大学", "奈良大学"],
-    images: [
-      "/images/convers/convers-1.jpg",
-      "/images/convers/convers-2.jpg",
-    ],
-    activityDays: "チーム活動は最低月1回、定例会月1回、その他イベント準備会月1回程度",
-    memberCount: 10,
-    location: "奈良市ボランティアインフォメーションセンター（会合）、その他活動場所は活動により異なる",
-    fee: "年会費3,000円（大学生）、1,000円（高校生）",
-    genderRatio: "男3:女7",
-    snsLinks: {
-      x: "https://x.com/convers_gakusei",
-      instagram: "https://www.instagram.com/convers_naragaku",
-    },
-  },
-  {
-    id: 9,
-    name: "トライシェア",
-    description: `【トライシェア概要】
-トライシェアは大阪の大学生が立ち上げた体験共有型インカレサークルです。
-活動内容としてはZoomや対面で月次の決起集会を行い、先月の「挑戦」と来月の目標を共有しています。
-行動するきっかけや刺激が欲しい方は是非お気軽にご参加ください！`,
-    tags: ["オンライン", "交流", "体験共有"],
-    universities: ["大阪公立大学", "同志社大学", "立命館大学"],
-    images: [
-      "/images/tryshare/tryshare-1.png",
-    ],
-    activityDays: "毎月1日(前後あり)",
-    memberCount: 10,
-    location: "Zoom",
-    fee: "無料",
-    genderRatio: "男10:女0",
-    snsLinks: {
-      instagram: "https://www.instagram.com/try__share?igsh=MXg1Mms0ZW01eTJmMQ%3D%3D&utm_source=qr",
-    },
-  },
-];
-
+// 1件分のカード表示を行うコンポーネント
 function CircleCard({ circle }: { circle: Circle }) {
+  // 画像が存在しない場合のフォールバックを設定
+  const mainImage = circle.images_url && circle.images_url.length > 0 
+    ? circle.images_url[0] 
+    : "/images/placeholder.jpg"; // フォールバック画像（プロジェクトに存在しなければ後で入れ替えます）
+
   return (
     <Link href={`/circles/${circle.id}`} className="group">
       <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
         <div className="relative overflow-hidden">
           <Image
-            src={circle.images[0]}
+            src={mainImage}
             alt={circle.name}
             width={600}
             height={400}
@@ -268,7 +40,7 @@ function CircleCard({ circle }: { circle: Circle }) {
           />
           {/* タグバッジ（画像の上に重ねる） */}
           <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
-            {circle.tags.map(tag => (
+            {circle.tags && circle.tags.map(tag => (
               <span key={tag} className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow border border-white/20">
                 #{tag}
               </span>
@@ -285,11 +57,34 @@ function CircleCard({ circle }: { circle: Circle }) {
   );
 }
 
-// サークル一覧グリッド
-export default function CircleList() {
+// サークル一覧グリッド（Supabaseからデータ取得する非同期Server Component）
+export default async function CircleList() {
+  const { data: circles, error } = await supabase
+    .from('circle')
+    .select('*')
+    .order('id', { ascending: true }); // ID順などでソート
+
+  if (error) {
+    console.error('サークルデータの取得に失敗しました:', error);
+    return (
+      <div className="text-center text-red-500 p-8 bg-red-50 rounded-xl">
+        <p className="font-bold text-lg mb-2">サークル情報の読み込みに失敗しました。</p>
+        <p className="text-sm">時間を置いて再度お試しください。（Error: {error.message}）</p>
+      </div>
+    );
+  }
+
+  if (!circles || circles.length === 0) {
+    return (
+      <div className="text-center text-gray-500 p-8">
+        登録されているサークルがまだありません。
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {circlesData.map((circle) => (
+      {circles.map((circle: Circle) => (
         <CircleCard key={circle.id} circle={circle} />
       ))}
     </div>
