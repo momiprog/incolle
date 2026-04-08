@@ -349,7 +349,7 @@ export const events: WelcomeEvent[] = [
     },
     {
         id: 31,
-        circleId: 999, // Supabaseで生成されたIDが不明なためダミー値（名前でマッチさせます）
+        circleId: 10, // Supabaseで生成されたIDが不明なためダミー値（名前でマッチさせます）
         circleName: "関西学院大学アカペラサークル Crescent Party",
         eventName: "アカペラ体験会",
         date: "4月10日(金) 19:00〜22:00",
@@ -360,7 +360,7 @@ export const events: WelcomeEvent[] = [
     },
     {
         id: 32,
-        circleId: 999,
+        circleId: 10,
         circleName: "関西学院大学アカペラサークル Crescent Party",
         eventName: "アカペラ体験会",
         date: "4月15日(火) 19:00〜22:00",
@@ -371,7 +371,7 @@ export const events: WelcomeEvent[] = [
     },
     {
         id: 33,
-        circleId: 999,
+        circleId: 10,
         circleName: "関西学院大学アカペラサークル Crescent Party",
         eventName: "新歓ピザパーティー",
         date: "4月19日(日) 11:00〜14:00",
@@ -382,7 +382,7 @@ export const events: WelcomeEvent[] = [
     },
     {
         id: 34,
-        circleId: 999,
+        circleId: 10,
         circleName: "関西学院大学アカペラサークル Crescent Party",
         eventName: "アカペラ体験会",
         date: "4月20日(月) 19:00〜22:00",
@@ -393,7 +393,7 @@ export const events: WelcomeEvent[] = [
     },
     {
         id: 35,
-        circleId: 999,
+        circleId: 10,
         circleName: "関西学院大学アカペラサークル Crescent Party",
         eventName: "新歓ミニライブ",
         date: "4月24日(金) 19:40〜22:00",
@@ -404,7 +404,7 @@ export const events: WelcomeEvent[] = [
     },
     {
         id: 36,
-        circleId: 999,
+        circleId: 10,
         circleName: "関西学院大学アカペラサークル Crescent Party",
         eventName: "新歓ミニライブ",
         date: "4月29日(水) 19:40〜22:00",
