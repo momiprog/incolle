@@ -69,6 +69,7 @@ export default async function CircleDetailPage({ params }: Props) {
       circle.x_link,
       circle.instagram_link,
       circle.website_link,
+      circle.youtube_link,
     ].filter(Boolean),
   };
 
@@ -260,8 +261,22 @@ export default async function CircleDetailPage({ params }: Props) {
               </a>
             )}
 
+            {circle.youtube_link && (
+              <a
+                href={circle.youtube_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-red-600 text-white font-bold py-4 px-8 rounded-2xl hover:bg-red-700 hover:shadow-md transition-all duration-300 text-center text-lg flex justify-center items-center gap-2"
+              >
+                <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C.001 8.077 0 12 0 12s.001 3.923.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C23.999 15.923 24 12 24 12s-.001-3.923-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                YouTubeを見る
+              </a>
+            )}
+
             {/* リンクがどちらもない場合 */}
-            {!circle.x_link && !circle.instagram_link && !circle.website_link && !circle.tiktok_link && (
+            {!circle.x_link && !circle.instagram_link && !circle.website_link && !circle.tiktok_link && !circle.youtube_link && (
               <p className="text-gray-500 text-sm text-center w-full py-4">SNSリンクは現在準備中です</p>
             )}
           </div>

@@ -18,6 +18,7 @@ export type Circle = {
   x_link: string | null;
   instagram_link: string | null;
   website_link: string | null;
+  youtube_link: string | null;
 };
 
 // 1件分のカード表示を行うコンポーネント
