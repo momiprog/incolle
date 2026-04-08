@@ -46,13 +46,15 @@ export default async function CircleDetailPage({ params }: Props) {
   // dbからサークル情報を取得
   const { data: circle } = await supabase.from('circle').select('*').eq('id', parseInt(id, 10)).single();
 
-  // このサークルの新歓イベントを取得
-  const welcomeEvents = allWelcomeEvents.filter((e) => e.circleId === parseInt(id, 10));
-
   // もし該当するサークルが存在しなかったら「404 Not Foundページ」を表示
   if (!circle) {
     return notFound();
   }
+
+  // このサークルの新歓イベントを取得（DBで自動割り当てされたIDが分からないときのため、サークル名でのフォールバックを追加）
+  const welcomeEvents = allWelcomeEvents.filter(
+    (e) => e.circleId === parseInt(id, 10) || e.circleName === circle.name
+  );
   // サークル用の構造化データ（JSON-LD）
   const jsonLd = {
     "@context": "https://schema.org",
