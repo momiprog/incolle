@@ -2,7 +2,7 @@ import Header from "../components/layout/Header";
 import Link from "next/link";
 import SakuraBackground from "../components/SakuraBackground";
 
-import { WelcomeEvent, events } from "../data/welcomeEvents";
+import { events, getProcessedEvents } from "../data/welcomeEvents";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function WelcomeEventPage() {
+    const processedEvents = getProcessedEvents(events);
+
     return (
         <div className="min-h-screen bg-pink-50/30 pb-20 relative">
             <SakuraBackground />
@@ -53,24 +55,29 @@ export default function WelcomeEventPage() {
                 </div>
 
                 <div className="space-y-6">
-                    {events.length === 0 ? (
+                    {processedEvents.length === 0 ? (
                         <div className="bg-white rounded-2xl shadow-sm p-10 text-center border border-gray-100">
                             <p className="text-gray-500 font-bold text-lg">現在予定されている新歓イベントはありません🌸</p>
                             <p className="text-gray-400 text-sm mt-2">新しいイベントが追加されるのをお待ちください！</p>
                         </div>
-                    ) : events.map((event) => {
+                    ) : processedEvents.map((event) => {
                         // "4月13日(土) 13:00〜16:00" を日付と時間に分割
                         const [datePart, timePart] = event.date.split(' ');
 
                         return (
-                            <div key={event.id} className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col md:flex-row group">
+                            <div key={event.id} className={`rounded-2xl shadow-sm transition-all duration-300 overflow-hidden border flex flex-col md:flex-row group ${event.isFinished ? 'bg-gray-50 border-gray-200 opacity-70 grayscale-[30%]' : 'bg-white hover:shadow-lg border-gray-100'}`}>
 
                                 {/* 日付エリア（左側） */}
-                                <div className="bg-pink-50 md:w-56 p-6 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-pink-100 shrink-0 group-hover:bg-pink-100 transition-colors">
-                                    <span className="text-pink-600 font-black text-2xl tracking-tighter text-center">
+                                <div className={`${event.isFinished ? 'bg-gray-100 border-gray-200' : 'bg-pink-50 border-pink-100 group-hover:bg-pink-100'} md:w-56 p-6 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r shrink-0 transition-colors relative`}>
+                                    {event.isFinished && (
+                                        <div className="absolute top-3 left-3 bg-gray-400 text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
+                                            終了
+                                        </div>
+                                    )}
+                                    <span className={`${event.isFinished ? 'text-gray-500 line-through decoration-gray-400' : 'text-pink-600'} font-black text-2xl tracking-tighter text-center`}>
                                         {datePart}
                                     </span>
-                                    <span className="text-gray-500 font-bold text-sm mt-1">
+                                    <span className={`${event.isFinished ? 'text-gray-400 line-through decoration-gray-300' : 'text-gray-500'} font-bold text-sm mt-1`}>
                                         {timePart}
                                     </span>
                                 </div>
@@ -80,19 +87,19 @@ export default function WelcomeEventPage() {
                                     {/* サークル名ラベル */}
                                     <div className="mb-3 flex items-center">
                                         <Link href={`/circles/${event.circleId}`} className="inline-block transition-transform hover:-translate-y-0.5 hover:scale-105">
-                                            <span className="text-sm md:text-base font-extrabold text-white bg-gradient-to-r from-pink-500 to-orange-400 px-4 py-1.5 rounded-full shadow-md drop-shadow-sm border border-pink-300 flex items-center gap-1.5">
+                                            <span className={`text-sm md:text-base font-extrabold text-white ${event.isFinished ? 'bg-gray-400 border-gray-300' : 'bg-gradient-to-r from-pink-500 to-orange-400 border-pink-300'} px-4 py-1.5 rounded-full shadow-md drop-shadow-sm border flex items-center gap-1.5`}>
                                                 {event.circleName} <span className="text-sm font-black pl-2">詳細を見る➡️</span>
                                             </span>
                                         </Link>
                                     </div>
 
                                     {/* イベント名 */}
-                                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 leading-snug group-hover:text-pink-600 transition-colors">
+                                    <h3 className={`text-xl md:text-2xl font-bold mb-3 leading-snug transition-colors ${event.isFinished ? 'text-gray-500' : 'text-gray-900 group-hover:text-pink-600'}`}>
                                         {event.eventName}
                                     </h3>
 
                                     {/* 説明文 */}
-                                    <p className="text-gray-600 text-sm mb-6 leading-relaxed flex-1 whitespace-pre-wrap">
+                                    <p className={`text-sm mb-6 leading-relaxed flex-1 whitespace-pre-wrap ${event.isFinished ? 'text-gray-400' : 'text-gray-600'}`}>
                                         {event.description}
                                     </p>
 

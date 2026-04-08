@@ -3,7 +3,7 @@ import { supabase } from "../../../utils/supabase";
 import { notFound } from "next/navigation";
 import ImageSlider from "../../components/ImageSlider";
 import Image from "next/image";
-import { events as allWelcomeEvents } from "../../data/welcomeEvents";
+import { events as allWelcomeEvents, getProcessedEvents } from "../../data/welcomeEvents";
 import type { Metadata } from "next";
 
 type Props = {
@@ -55,6 +55,10 @@ export default async function CircleDetailPage({ params }: Props) {
   const welcomeEvents = allWelcomeEvents.filter(
     (e) => e.circleId === parseInt(id, 10) || e.circleName === circle.name
   );
+  
+  // 日付順にソート＆終了判定
+  const processedEvents = getProcessedEvents(welcomeEvents);
+
   // サークル用の構造化データ（JSON-LD）
   const jsonLd = {
     "@context": "https://schema.org",
@@ -173,29 +177,32 @@ export default async function CircleDetailPage({ params }: Props) {
           </div>
 
           {/* 新歓イベント日程（該当サークルのみ） */}
-          {welcomeEvents.length > 0 && (
+          {processedEvents.length > 0 && (
             <div className="mb-10 bg-pink-50/50 rounded-2xl p-6 border border-pink-100">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                 <span className="text-pink-400">🌸</span> 新歓イベント日程
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {welcomeEvents.map((event) => (
-                  <div key={event.id} className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="mb-3">
-                      <h3 className="font-bold text-lg text-gray-800">{event.eventName}</h3>
+                {processedEvents.map((event) => (
+                  <div key={event.id} className={`border rounded-xl p-5 transition-shadow ${event.isFinished ? 'bg-gray-50 border-gray-100 opacity-60' : 'bg-white border-gray-100 shadow-sm hover:shadow-md'}`}>
+                    <div className="mb-3 flex items-center justify-between">
+                      <h3 className={`font-bold text-lg ${event.isFinished ? 'text-gray-500' : 'text-gray-800'}`}>
+                        {event.eventName}
+                      </h3>
+                      {event.isFinished && <span className="text-xs font-bold bg-gray-200 text-gray-500 px-2 py-1 rounded">終了</span>}
                     </div>
-                    <div className="text-sm text-gray-600 space-y-2">
+                    <div className={`text-sm space-y-2 ${event.isFinished ? 'text-gray-400' : 'text-gray-600'}`}>
                       <p className="flex items-start gap-2">
-                        <span className="text-gray-400 shrink-0 mt-0.5">📅</span>
-                        <span>{event.date}</span>
+                        <span className="text-gray-300 shrink-0 mt-0.5">📅</span>
+                        <span className={event.isFinished ? 'line-through' : ''}>{event.date}</span>
                       </p>
                       <p className="flex items-start gap-2">
-                        <span className="text-gray-400 shrink-0 mt-0.5">📍</span>
+                        <span className="text-gray-300 shrink-0 mt-0.5">📍</span>
                         <span>{event.location}</span>
                       </p>
                     </div>
                     {event.description && (
-                      <p className="text-sm text-gray-700 whitespace-pre-wrap mt-4 pt-3 border-t border-gray-100">
+                      <p className={`text-sm whitespace-pre-wrap mt-4 pt-3 border-t ${event.isFinished ? 'text-gray-400 border-gray-200' : 'text-gray-700 border-gray-100'}`}>
                         {event.description}
                       </p>
                     )}

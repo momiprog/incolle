@@ -425,3 +425,50 @@ export const events: WelcomeEvent[] = [
         snsLinks: {},
     },
 ];
+
+// ソート・終了判定済みのイベントを返すヘルパー関数
+export type ProcessedWelcomeEvent = WelcomeEvent & {
+    eventDate: Date;
+    isFinished: boolean;
+};
+
+export const getProcessedEvents = (eventList: WelcomeEvent[]): ProcessedWelcomeEvent[] => {
+    // タイムゾーンをJSTとして現在時刻を取得する（VercelなどのUTC環境でもJST基準で判定できるようにする）
+    const nowStr = new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" });
+    const now = new Date(nowStr);
+    const currentYear = now.getFullYear();
+
+    return eventList.map((event) => {
+        // "4月10日(金) 19:00〜22:00" または "4月6日(日)" 等から日付を抽出
+        const dateMatch = event.date.match(/(\d+)月(\d+)日/);
+        let eventDate = new Date(currentYear + 1, 11, 31); // うまくパースできない場合は未来（一番下）にする
+        
+        if (dateMatch) {
+            const month = parseInt(dateMatch[1], 10);
+            const day = parseInt(dateMatch[2], 10);
+            
+            // 開始時間
+            const timeMatch = event.date.match(/(\d{1,2}):(\d{2})/);
+            // 終了時間（"〜22:00" などから抽出）
+            const endTimeMatch = event.date.match(/〜\s*(\d{1,2}):(\d{2})/);
+            
+            // イベントの「終了時刻」を基準にする。終了時刻がなければ開始時刻。それもなければ23:59とする
+            const hours = endTimeMatch ? parseInt(endTimeMatch[1], 10) : (timeMatch ? parseInt(timeMatch[1], 10) : 23);
+            const minutes = endTimeMatch ? parseInt(endTimeMatch[2], 10) : (timeMatch ? parseInt(timeMatch[2], 10) : 59);
+            
+            // 11月・12月に「1月のイベント」を見る場合などを考慮
+            const eventYear = (month < 3 && now.getMonth() >= 10) ? currentYear + 1 : currentYear;
+            
+            eventDate = new Date(eventYear, month - 1, day, hours, minutes);
+        }
+
+        const isFinished = eventDate < now;
+        return { ...event, eventDate, isFinished };
+    }).sort((a, b) => {
+        // 終了済みのものは下（配列の後ろ）へ
+        if (a.isFinished && !b.isFinished) return 1;
+        if (!a.isFinished && b.isFinished) return -1;
+        // 未終了同士、または終了済み同士の場合は日付が早い順
+        return a.eventDate.getTime() - b.eventDate.getTime();
+    });
+};
