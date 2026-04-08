@@ -413,4 +413,15 @@ export const events: WelcomeEvent[] = [
         description: "先輩たちの生の歌声をお届け！大迫力のアカペラミニライブです🎤",
         snsLinks: { x: "https://x.com/CrepaSinkan2026", instagram: "https://instagram.com/crepa_2026", website: "https://youtube.com/@crescent_party" },
     },
+    {
+        id: 37,
+        circleId: 11,
+        circleName: "Tokyo Global Hub",
+        eventName: "新歓イベント",
+        date: "4月17日(金) 19:00〜22:00",
+        location: "新宿",
+        type: "offline",
+        description: "新歓イベントを開催します！詳細はお気軽にお問い合わせください✨",
+        snsLinks: {},
+    },
 ];
